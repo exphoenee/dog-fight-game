@@ -1,6 +1,7 @@
 import GameObject from "../GameObject";
 import playerProperty from "./playerProperty";
 
+import {Sitting} from "./playerStates";
 import playerActions from "./playerActions";
 
 class Player extends GameObject {
@@ -11,11 +12,14 @@ class Player extends GameObject {
     this.positionX = this.width;
     this.positionY = this.groundLevel;
 
-
     this.jumpSpeed = 0;
     this.weight = 1;
 
     this.setCanCollideWith(["enemy"]);
+
+    this.states = [new Sitting()];
+    this.currentState = this.states[0];
+    this.currentState.enter();
   }
 
   jump() {
@@ -59,7 +63,6 @@ class Player extends GameObject {
   }
 
   update() {
-
     this.jump();
 
     this.collisions = this.getCollisions();
