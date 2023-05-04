@@ -37,12 +37,12 @@ class GameObject {
     this.spriteHeightRaw = properties.spriteHeightRaw;
 
     this.stateAnim = properties.states ?? {};
-    this.states = Object.keys(this.stateAnim);
+    this.stateNames = Object.keys(this.stateAnim);
 
     this.sizeFactor = properties.sizeFactor ?? 1;
     this.frameX = 0;
     this.frameY = 0;
-    this.state = this.states[0];
+    this.state = this.stateNames[0];
     this.speedX = properties.speedX ?? 0;
     this.speedY = properties.speedY ?? 0;
 
@@ -123,11 +123,11 @@ class GameObject {
     }, {});
 
   setState(state) {
-    if (this.states.includes(state)) {
+    if (this.stateNames.includes(state)) {
       this.state = state;
     } else {
       console.warn(
-        `State ${state} does not exist, please use one of these: ${this.states.join(
+        `State ${state} does not exist, please use one of these: ${this.stateNames.join(
           ", "
         )}.`
       );
@@ -141,7 +141,7 @@ class GameObject {
   }
 
   stateSelector() {
-    if (this.states.length > 1) {
+    if (this.stateNames.length > 1) {
       const createControl = () => {
         const controls = document.createElement("div");
         controls.id = "controls";
@@ -163,7 +163,7 @@ class GameObject {
       inputContainer.appendChild(label);
 
       const selectState = document.createElement("select");
-      this.states.forEach((state) => {
+      this.stateNames.forEach((state) => {
         const option = document.createElement("option");
         option.value = state;
         option.innerText = state;
