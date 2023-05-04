@@ -8,11 +8,19 @@ class State {
   constructor(state) {
     this.state = state;
   }
+
+  enter() {
+    throw new Error("enter method not implemented");
+  }
+
+  handleInput(input) {
+    throw new Error("handleInput method not implemented");
+  }
 }
 
-export class StandingLeft extends State {
+export class Sitting extends State {
   constructor(player) {
-    super("STANDING_LEFT");
+    super("SITTING");
     this.player = player;
   }
 
@@ -25,15 +33,4 @@ export class StandingLeft extends State {
       this.player.setState(this.player.states.WALKING_LEFT);
     }
   }
-}
-
-export class StandingRight extends State {
-  constructor(player) {
-    super("STANDING_RIGHT");
-    this.player = player;
-  }
-
-  enter() {}
-
-  handleInput(input) {}
 }
