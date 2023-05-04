@@ -64,4 +64,4 @@ jobs:
           # Author name for deployment commit
           committer: GitHub Actions
           # Committer email for deployment commit
-          committer-email:
+          committer-email: exphoenee@gmail.com
