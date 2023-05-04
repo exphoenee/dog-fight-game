@@ -13,7 +13,7 @@ const playerProperty = {
     fall: {frameY: 2, frameNrX: 6},
     run: {frameY: 3, frameNrX: 8},
     dizzy: {frameY: 4, frameNrX: 11},
-    sit: {frameY: 5, frameNrX: 5},
+    sitting: {frameY: 5, frameNrX: 5},
     roll: {frameY: 6, frameNrX: 7},
     bite: {frameY: 7, frameNrX: 7},
     ko: {frameY: 8, frameNrX: 12},
