@@ -74,7 +74,7 @@ class Player extends GameObject {
   }
 
   update() {
-    this.currentState.handleInput(this.game.keyboardHandler.lastKey);
+    this.currentState.handleInput(this.game.keyboardHandler.keys);
     this.jump();
 
     this.collisions = this.getCollisions();
