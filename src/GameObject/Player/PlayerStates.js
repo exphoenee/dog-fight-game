@@ -1,6 +1,8 @@
 import playerProperty from "./playerProperty";
 
 export const sitting = "sitting";
+export const walkLeft = "walkLeft";
+export const walkRight = "walkRight";
 export const idle = "idle";
 export const jump = "jump";
 export const fall = "fall";
@@ -34,17 +36,18 @@ class State {
 
 class Sitting extends State {
   constructor(player) {
-    super("sitting", player);
-    console.log(this.name);
+    super(sitting, player);
+
+    this.keyboardHandler = player.game.keyboardHandler;
   }
 
   enter() {
     this.player.frameY = playerProperty.states[this.name].frameY;
   }
 
-  handleInput(input) {
-    if (input === "LEFT") {
-      this.player.setState(this.player.states.WALKING_LEFT);
+  handleInput(keys) {
+    if ([...keys].includes(this.keyboardHandler.keyMap.ArrowLeft)) {
+      this.player.setState(walkLeft);
     }
   }
 }
