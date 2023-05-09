@@ -1,8 +1,18 @@
 import GameObject from "../GameObject";
 import playerProperty from "./playerProperty";
 
-import {Sitting} from "./playerStates";
-import playerActions from "./playerActions";
+import playerStates, {
+  idle,
+  jump,
+  fall,
+  run,
+  dizzy,
+  sitting,
+  roll,
+  bite,
+  ko,
+  getHit,
+} from "./PlayerStates";
 
 class Player extends GameObject {
   constructor(game, optionalProperties) {
@@ -17,8 +27,9 @@ class Player extends GameObject {
 
     this.setCanCollideWith(["enemy"]);
 
-    this.states = [new Sitting()];
-    this.currentState = this.states[0];
+    this.states = playerStates(this);
+
+    this.currentState = this.states[sitting];
     this.currentState.enter();
   }
 
