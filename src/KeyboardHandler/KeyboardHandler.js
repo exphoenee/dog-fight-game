@@ -1,4 +1,5 @@
 class KeyboardHandler {
+  #keys = new Set();
   #lastKey = "";
   #prevKey = "";
   #keyMap = {
@@ -15,7 +16,7 @@ class KeyboardHandler {
       {event: "keydown", action: "PRESSED"},
       {event: "keyup", action: "RELEASED"},
     ].forEach(({event, action}) =>
-      window.addEventListener(event, (e) => this.handleKey(e, action))
+      window.addEventListener(event, (e) => this.handleKey(e, action)),
     );
   }
 
@@ -25,7 +26,13 @@ class KeyboardHandler {
       this.#prevKey = this.#lastKey;
       this.#lastKey = validKey ? `${validKey}_${action}` : this.#lastKey;
       this.#prevKey !== this.#lastKey && console.log(this.#lastKey);
+      if (action === "PRESSED") this.#keys.add(validKey);
+      if (action === "RELEASED") this.#keys.delete(validKey);
     }
+  }
+
+  get keys() {
+    return this.#keys;
   }
 
   get lastKey() {
