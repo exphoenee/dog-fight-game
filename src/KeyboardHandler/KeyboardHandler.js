@@ -1,3 +1,18 @@
+// import {
+//   sitting,
+//   walkLeft,
+//   walkRight,
+//   idle,
+//   jump,
+//   fall,
+//   run,
+//   dizzy,
+//   roll,
+//   bite,
+//   ko,
+//   getHit,
+// } from "../GameObject/Player/PlayerStates";
+
 class KeyboardHandler {
   #keys = new Set();
   #lastKey = "";
@@ -25,7 +40,6 @@ class KeyboardHandler {
     if (validKey) {
       this.#prevKey = this.#lastKey;
       this.#lastKey = validKey ? `${validKey}_${action}` : this.#lastKey;
-      this.#prevKey !== this.#lastKey && console.log(this.#lastKey);
       if (action === "PRESSED") this.#keys.add(validKey);
       if (action === "RELEASED") this.#keys.delete(validKey);
     }
@@ -37,6 +51,10 @@ class KeyboardHandler {
 
   get lastKey() {
     return this.#lastKey;
+  }
+
+  get keyMap() {
+    return this.#keyMap;
   }
 }
 
