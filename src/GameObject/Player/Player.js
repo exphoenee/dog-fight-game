@@ -1,18 +1,8 @@
 import GameObject from "../GameObject";
 import playerProperty from "./playerProperty";
 
-import playerStates, {
-  idle,
-  jump,
-  fall,
-  run,
-  dizzy,
-  sitting,
-  roll,
-  bite,
-  ko,
-  getHit,
-} from "./PlayerStates";
+import getPlayerStates from "./PlayerStates";
+import {sitting} from "./PlayerStates/Sitting";
 
 class Player extends GameObject {
   constructor(game, optionalProperties) {
@@ -27,46 +17,10 @@ class Player extends GameObject {
 
     this.setCanCollideWith(["enemy"]);
 
-    this.states = playerStates(this);
+    this.states = getPlayerStates(this);
 
     this.currentState = this.states[sitting];
     this.currentState.enter();
-  }
-
-  jump() {
-    this.positionY -= this.jumpSpeed;
-
-    if (!this.onGround) {
-      this.jumpSpeed -= this.weight;
-      this.setState("jump");
-    } else {
-      this.positionY = this.groundLevel;
-      this.jumpSpeed = 0;
-    }
-    if (this.game.keyboardHandler.lastKey === "UP_PRESSED") {
-      if (this.onGround) this.jumpSpeed = 30;
-    }
-  }
-
-  attack() {
-    this.positionY += this.speedY;
-    this.setState("fall");
-  }
-
-  left() {
-    this.positionX -= this.speedX;
-    if (this.positionX - this.width / 2 < 0) {
-      this.positionX = this.width / 2;
-    }
-    this.setState("run");
-  }
-
-  right() {
-    this.positionX += this.speedX;
-    if (this.positionX > this.game.canvas.width - this.width / 2) {
-      this.positionX = this.game.canvas.width - this.width / 2;
-    }
-    this.setState("run");
   }
 
   get onGround() {
@@ -75,7 +29,6 @@ class Player extends GameObject {
 
   update() {
     this.currentState.handleInput(this.game.keyboardHandler.keys);
-    this.jump();
 
     this.collisions = this.getCollisions();
 
