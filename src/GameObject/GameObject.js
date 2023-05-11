@@ -124,7 +124,8 @@ class GameObject {
 
   setState(state) {
     if (this.stateNames.includes(state)) {
-      this.state = state;
+      this.currentState = this.states[state];
+      this.currentState.enter();
     } else {
       console.warn(
         `State ${state} does not exist, please use one of these: ${this.stateNames.join(
