@@ -1,4 +1,5 @@
 import State from "./State";
+import {falling} from "./Falling";
 
 export const jumping = "jumping";
 
@@ -9,14 +10,24 @@ class Jumping extends State {
 
   enterActions() {
     if (this.player.onGround()) {
-      this.player.jumpSpeed = this.player.jumpSpeedValue;
+      this.player.jumpSpeed = 30;
     }
+    console.log(this.player.jumpSpeed, this.player.weight);
   }
 
-  handleInput(keys) {
+  handleInput() {
     if (this.player.jumpSpeed > this.player.weight) {
       this.player.setState(falling);
     }
+    this.positionY -= this.jumpSpeed;
+
+    if (!this.onGround) {
+      this.jumpSpeed -= this.weight;
+    } else {
+      this.positionY = this.groundLevel;
+      this.jumpSpeed = 0;
+    }
+    console.log(this.player.jumpSpeed, this.player.weight);
   }
 }
 
