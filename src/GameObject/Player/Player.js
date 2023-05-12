@@ -23,12 +23,13 @@ class Player extends GameObject {
     this.currentState.enter();
   }
 
-  get onGround() {
+  onGround() {
     return this.positionY >= this.groundLevel;
   }
 
   update() {
     this.currentState.handleInput(this.game.keyboardHandler.keys);
+    console.log(this.currentState.name);
 
     this.collisions = this.getCollisions();
 
