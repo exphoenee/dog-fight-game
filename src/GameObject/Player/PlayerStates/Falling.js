@@ -1,5 +1,6 @@
 import State from "./State";
 import {running} from "./Running";
+import {sitting} from "./Sitting";
 
 export const falling = "falling";
 
@@ -16,7 +17,7 @@ class Falling extends State {
 
   handleInput() {
     if (this.player.onGround()) {
-      this.player.setState(running);
+      this.player.setState(sitting);
     }
   }
 }
