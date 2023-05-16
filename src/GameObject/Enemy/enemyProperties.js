@@ -6,7 +6,7 @@ const allEnemyProperties = [
     spriteHeightRaw: 152,
     width: 128,
     zIndex: 10,
-    states: {
+    stateAnim: {
       idle: {frameY: 0, frameNrX: 6},
     },
   },
@@ -17,7 +17,7 @@ const allEnemyProperties = [
     spriteHeightRaw: 185,
     width: 128,
     zIndex: 10,
-    states: {
+    stateAnim: {
       idle: {frameY: 0, frameNrX: 6},
     },
   },
@@ -28,7 +28,7 @@ const allEnemyProperties = [
     spriteHeightRaw: 175,
     width: 100,
     zIndex: 10,
-    states: {
+    stateAnim: {
       idle: {frameY: 0, frameNrX: 5},
     },
   },
@@ -39,7 +39,7 @@ const allEnemyProperties = [
     spriteHeightRaw: 213,
     width: 100,
     zIndex: 10,
-    states: {
+    stateAnim: {
       idle: {frameY: 0, frameNrX: 5},
     },
   },
@@ -50,7 +50,7 @@ const allEnemyProperties = [
     spriteHeightRaw: 170,
     width: 130,
     zIndex: 10,
-    states: {
+    stateAnim: {
       idle: {frameY: 0, frameNrX: 6},
     },
   },
@@ -61,7 +61,7 @@ const allEnemyProperties = [
     spriteHeightRaw: 175,
     width: 150,
     zIndex: 10,
-    states: {
+    stateAnim: {
       idle: {frameY: 0, frameNrX: 6},
     },
   },
@@ -73,7 +73,7 @@ const allEnemyProperties = [
     width: 150,
     zIndex: 10,
     opacity: 0.65,
-    states: {
+    stateAnim: {
       idle: {frameY: 0, frameNrX: 5},
     },
   },
