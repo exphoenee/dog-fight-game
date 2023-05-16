@@ -17,6 +17,8 @@ class State {
   handleInput() {
     throw new Error("handleInput method not implemented");
   }
+
+  update() {}
 }
 
 export default State;
