@@ -7,7 +7,7 @@ class Explosion extends GameObject {
       ...explosionProperties,
       ...optionalProperties,
     });
-    console.log(this.stateAnim, this.state);
+    console.log(explosionProperties, this.stateAnim, this.state);
   }
   update() {
     const {frameNrX, frameY} = this.stateAnim[this.state];
