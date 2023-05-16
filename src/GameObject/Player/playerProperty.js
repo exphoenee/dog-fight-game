@@ -20,7 +20,7 @@ const playerProperty = {
   speedX: 5,
   speedY: 5,
   zIndex: 1,
-  states: {
+  stateAnim: {
     [sitting]: {frameY: 5, frameNrX: 5},
     [running]: {frameY: 3, frameNrX: 8},
     [jumping]: {frameY: 1, frameNrX: 6},
