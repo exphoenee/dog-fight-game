@@ -13,7 +13,6 @@ class Player extends GameObject {
     this.positionY = this.groundLevel;
 
     this.jumpSpeed = 0;
-    this.weight = 1;
 
     this.setCanCollideWith(["enemy"]);
 
@@ -29,7 +28,10 @@ class Player extends GameObject {
 
   update() {
     this.currentState.handleInput(this.game.keyboardHandler.keys);
-    console.log(this.currentState.name);
+
+    console.log(this.currentState.name, this.positionY);
+
+    // this.currentState.update();
 
     this.collisions = this.getCollisions();
 
