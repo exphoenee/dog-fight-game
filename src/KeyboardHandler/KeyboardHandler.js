@@ -24,6 +24,7 @@ class KeyboardHandler {
     ArrowDown: "DOWN",
     " ": "SPACE",
     d: "D",
+    Enter: "ENTER",
   };
 
   constructor() {
