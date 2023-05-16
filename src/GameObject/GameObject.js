@@ -8,7 +8,6 @@ class GameObject {
       type: 0,
       opacity: 1,
       zIndex: 0,
-
       positionX: 0,
       positionY: 0,
       stateAnim: {},
