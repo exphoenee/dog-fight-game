@@ -6,7 +6,7 @@ const playerProperties = {
   staggerFrames: 8,
   width: 128,
   zIndex: 0,
-  states: {
+  stateAnim: {
     idle: {frameY: 0, frameNrX: 5},
   },
 };
