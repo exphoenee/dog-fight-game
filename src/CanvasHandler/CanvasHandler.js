@@ -16,22 +16,24 @@ class CanvasHandler {
     this.ctx.clearRect(0, 0, this.width, this.height);
   }
 
-  drawHitBox(gameObject) {
-    const options = {color: "red", opacity: 0.5};
+  drawHitBox(gameObject, options) {
+    this.drawCircle(gameObject.positionX, gameObject.positionY, 3, {
+      ...{color: "red", opacity: 0.5, filled: true},
+      ...options,
+    });
 
-    this.drawCircle(gameObject.positionX, gameObject.positionY, 3, options);
     this.drawRectangle(
       gameObject.positionX - gameObject.offsetX,
       gameObject.positionY - gameObject.offsetY,
       gameObject.width * gameObject.sizeFactor,
       gameObject.height * gameObject.sizeFactor,
-      options
+      options,
     );
     this.drawText(
       Math.round(gameObject.sizeFactor * 100) / 100,
       gameObject.positionX,
       gameObject.positionY - 20,
-      {...options, color: "white", opacity: 1}
+      {color: "white", opacity: 1},
     );
   }
 
@@ -58,7 +60,7 @@ class CanvasHandler {
       this.ctx.stroke();
     });
     filled &&
-      this.drawWithStyle({opacity} / 3, () => {
+      this.drawWithStyle({opacity: opacity / 3}, () => {
         this.ctx.beginPath();
         this.ctx.strokeStyle = color;
         this.ctx.fillStyle = color;
@@ -66,7 +68,12 @@ class CanvasHandler {
       });
   }
 
-  drawWithStyle({opacity, mirrored}, cb) {
+  drawWithStyle(style, cb) {
+    if (!style) {
+      cb();
+      return;
+    }
+    const {opacity, mirrored} = style;
     this.ctx.save();
     mirrored && this.ctx.scale(-1, 1);
     this.ctx.globalAlpha = opacity;
@@ -120,9 +127,9 @@ class CanvasHandler {
             gameObject.width * (mirrored ? -1 : 0),
           gameObject.positionY - gameObject.offsetY,
           gameObject.width * gameObject.sizeFactor * (mirrored ? -1 : 1),
-          gameObject.height * gameObject.sizeFactor
+          gameObject.height * gameObject.sizeFactor,
         );
-      }
+      },
     );
   }
 
@@ -145,21 +152,22 @@ class CanvasHandler {
         background.positionX,
         background.positionY,
         (background.width * background.canvasHeight) / background.height,
-        background.canvasHeight
+        background.canvasHeight,
       );
       this.ctx.drawImage(
         background.image,
         background.positionX2,
         background.positionY,
         (background.width * background.canvasHeight) / background.height,
-        background.canvasHeight
+        background.canvasHeight,
       );
     });
   }
 
   drawGameObject(gameObject, opacity = 1) {
     this.drawSprite(gameObject, opacity);
-    this.game.debugMode && this.drawHitBox(gameObject, opacity);
+    this.game.debugMode &&
+      this.drawHitBox(gameObject, {color: "red", opacity: 0.5, filled: true});
   }
 }
 
