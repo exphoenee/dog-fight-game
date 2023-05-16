@@ -46,7 +46,7 @@ class KeyboardHandler {
   }
 
   get keys() {
-    return this.#keys;
+    return [...this.#keys];
   }
 
   get lastKey() {
