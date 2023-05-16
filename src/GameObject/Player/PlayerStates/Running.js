@@ -18,23 +18,33 @@ class Running extends State {
     if ([...keys].includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
     }
+    if ([...keys].includes(this.keyMap.ArrowLeft)) {
+      // this.left();
+    }
+    if ([...keys].includes(this.keyMap.ArrowRight)) {
+      // this.right();
+    }
   }
+
+  left() {
+    this.player.positionX -= this.player.speedX;
+    if (this.player.positionX - this.player.width / 2 < 0) {
+      this.player.positionX = this.player.width / 2;
+    }
+  }
+
+  right() {
+    this.player.positionX += this.player.speedX;
+    if (
+      this.player.positionX >
+      this.player.game.canvas.width - this.player.width / 2
+    ) {
+      this.player.positionX =
+        this.player.game.canvas.width - this.player.width / 2;
+    }
+  }
+
+  update() {}
 }
 
 export default Running;
-
-function left() {
-  this.positionX -= this.speedX;
-  if (this.positionX - this.width / 2 < 0) {
-    this.positionX = this.width / 2;
-  }
-  this.setState("run");
-}
-
-function right() {
-  this.positionX += this.speedX;
-  if (this.positionX > this.game.canvas.width - this.width / 2) {
-    this.positionX = this.game.canvas.width - this.width / 2;
-  }
-  this.setState("run");
-}
