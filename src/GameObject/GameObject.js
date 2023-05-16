@@ -14,6 +14,7 @@ class GameObject {
       stateAnim: {},
       speedX: 0,
       speedY: 0,
+      state: "idle",
 
       targetPositionX: this.positionX,
       targetPositionY: this.positionY,
@@ -22,7 +23,8 @@ class GameObject {
       sizeFactor: 1,
     };
 
-    Object.assign(this, {properties, ...this.defaultProperties});
+    Object.assign(this, {...this.defaultProperties, ...properties});
+    console.log(properties);
 
     this.id = uuid();
     this.name = properties.name;
