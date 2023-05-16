@@ -28,15 +28,22 @@ class Player extends GameObject {
 
   update() {
     this.currentState.handleInput(this.game.keyboardHandler.keys);
-
-    console.log(this.currentState.name, this.positionY);
-
-    // this.currentState.update();
-
     this.collisions = this.getCollisions();
 
-    const {frameNrX, frameY} = this.stateAnim[this.state];
-    this.frameY = frameY;
+    this.positionX += this.speedX;
+    this.positionY += this.speedY;
+    if (this.positionX - this.width / 2 < 0) this.positionX = this.width / 2;
+    if (this.positionX > this.game.canvas.width - this.width / 2)
+      this.positionX = this.game.canvas.width - this.width / 2;
+    if (!this.onGround) {
+      this.jumpSpeed -= this.weight;
+    } else {
+      this.positionY = this.groundLevel;
+      this.jumpSpeed = 0;
+    }
+
+    const {frameNrX} = this.stateAnim[this.state];
+
     this.frameX =
       Math.floor(this.game.gameFrame / this.game.staggerFrames) % frameNrX;
   }
