@@ -30,13 +30,16 @@ class Player extends GameObject {
     this.currentState.handleInput(this.game.keyboardHandler.keys);
     this.collisions = this.getCollisions();
 
+    // horizontal movement
     this.positionX += this.speedX;
-    this.positionY += this.jumpSpeed;
-    // console.log(this.positionX, this.positionY, this.jumpSpeed);
     if (this.positionX - this.width / 2 < 0) this.positionX = this.width / 2;
     if (this.positionX > this.game.canvas.width - this.width / 2)
       this.positionX = this.game.canvas.width - this.width / 2;
-    if (!this.onGround) {
+
+    // vertical movement
+    this.positionY += this.jumpSpeed;
+
+    if (!this.onGround()) {
       this.jumpSpeed += this.weight;
     } else {
       this.positionY = this.groundLevel;
