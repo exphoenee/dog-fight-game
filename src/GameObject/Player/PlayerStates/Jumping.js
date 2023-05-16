@@ -10,24 +10,27 @@ class Jumping extends State {
 
   enterActions() {
     if (this.player.onGround()) {
-      this.player.jumpSpeed = 30;
+      this.player.jumpSpeed = this.player.jumpHeight;
     }
-    console.log(this.player.jumpSpeed, this.player.weight);
+    console.log(this.player.jumpHeight, this.player.weight);
   }
 
   handleInput() {
     if (this.player.jumpSpeed > this.player.weight) {
       this.player.setState(falling);
     }
-    this.positionY -= this.jumpSpeed;
+  }
 
-    if (!this.onGround) {
-      this.jumpSpeed -= this.weight;
-    } else {
-      this.positionY = this.groundLevel;
-      this.jumpSpeed = 0;
-    }
-    console.log(this.player.jumpSpeed, this.player.weight);
+  update() {
+    // this.player.positionY -= this.player.jumpSpeed;
+
+    // if (!this.player.onGround) {
+    //   this.player.jumpSpeed -= this.weight;
+    // } else {
+    //   this.player.positionY = this.player.groundLevel;
+    //   this.player.jumpSpeed = 0;
+    // }
+    // console.log(this.player.jumpSpeed, this.player.weight);
   }
 }
 
