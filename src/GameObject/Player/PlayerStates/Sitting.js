@@ -9,16 +9,18 @@ class Sitting extends State {
     super(sitting, player);
   }
 
-  enterActions() {}
+  enterActions() {
+    //pass
+  }
 
   handleInput(keys) {
     if (
-      [...keys].includes(this.keyMap.ArrowLeft) ||
-      [...keys].includes(this.keyMap.ArrowRight)
+      keys.includes(this.keyMap.ArrowLeft) ||
+      keys.includes(this.keyMap.ArrowRight)
     ) {
       this.player.setState(running);
     }
-    if ([...keys].includes(this.keyMap.ArrowUp)) {
+    if (keys.includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
     }
   }
