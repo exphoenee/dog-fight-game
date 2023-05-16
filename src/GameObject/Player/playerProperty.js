@@ -17,7 +17,8 @@ const playerProperty = {
   jumpHeight: 30,
   weight: 1,
   width: 128,
-  speedX: 5,
+  speedX: 0,
+  maxSpeedX: 5,
   speedY: 5,
   zIndex: 1,
   stateAnim: {
