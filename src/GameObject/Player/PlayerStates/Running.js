@@ -13,16 +13,16 @@ class Running extends State {
   enterActions() {}
 
   handleInput(keys) {
-    if ([...keys].includes(this.keyMap.ArrowDown)) {
+    if (keys.includes(this.keyMap.ArrowDown)) {
       this.player.setState(sitting);
     }
-    if ([...keys].includes(this.keyMap.ArrowUp)) {
+    if (keys.includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
     }
-    if ([...keys].includes(this.keyMap.ArrowLeft)) {
+    if (keys.includes(this.keyMap.ArrowLeft)) { 
       this.player.speedX = -this.player.maxSpeedX;
     }
-    if ([...keys].includes(this.keyMap.ArrowRight)) {
+    if (keys.includes(this.keyMap.ArrowRight)) {
       this.player.speedX = this.player.maxSpeedX;
     }
   }
