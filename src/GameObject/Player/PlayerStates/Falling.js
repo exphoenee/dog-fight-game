@@ -11,7 +11,7 @@ class Falling extends State {
 
   enterActions() {
     if (this.player.onGround()) {
-      this.player.jumpSpeed = this.player.jumpSpeedValue;
+      this.player.jumpSpeed = 0;
     }
   }
 
