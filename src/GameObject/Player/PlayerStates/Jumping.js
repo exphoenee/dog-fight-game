@@ -1,5 +1,6 @@
 import State from "./State";
 import {falling} from "./Falling";
+import {sitting} from "./Sitting";
 
 export const jumping = "jumping";
 
@@ -10,6 +11,7 @@ class Jumping extends State {
 
   enterActions() {
     if (this.player.onGround()) {
+      console.log("jumping");
       this.player.jumpSpeed = -this.player.jumpHeight;
     }
   }
@@ -17,6 +19,9 @@ class Jumping extends State {
   handleInput() {
     if (this.player.jumpSpeed > this.player.weight) {
       this.player.setState(falling);
+    }
+    if (this.player.onGround()) {
+      this.player.setState(sitting);
     }
   }
 }
