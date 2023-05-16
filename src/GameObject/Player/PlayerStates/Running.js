@@ -1,6 +1,7 @@
 import State from "./State.js";
 import {sitting} from "./Sitting.js";
 import {jumping} from "./Jumping.js";
+import {rolling} from "./Rolling.js";
 
 export const running = "running";
 
@@ -15,15 +16,14 @@ class Running extends State {
   handleInput(keys) {
     if (keys.includes(this.keyMap.ArrowDown)) {
       this.player.setState(sitting);
-    }
-    if (keys.includes(this.keyMap.ArrowUp)) {
+    } else if (keys.includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
-    }
-    if (keys.includes(this.keyMap.ArrowLeft)) { 
+    } else if (keys.includes(this.keyMap.ArrowLeft)) {
       this.player.speedX = -this.player.maxSpeedX;
-    }
-    if (keys.includes(this.keyMap.ArrowRight)) {
+    } else if (keys.includes(this.keyMap.ArrowRight)) {
       this.player.speedX = this.player.maxSpeedX;
+    } else if (keys.includes(this.keyMap.Enter)) {
+      this.player.setState(rolling);
     }
   }
 }
