@@ -4,6 +4,26 @@ class GameObject {
   constructor(game, properties) {
     this.game = game;
 
+    this.defaultProperties = {
+      type: 0,
+      opacity: 1,
+      zIndex: 0,
+
+      positionX: 0,
+      positionY: 0,
+      stateAnim: {},
+      speedX: 0,
+      speedY: 0,
+
+      targetPositionX: this.positionX,
+      targetPositionY: this.positionY,
+
+      staggerFrames: this.game.staggerFrames,
+      sizeFactor: 1,
+    };
+
+    Object.assign(this, {properties, ...this.defaultProperties});
+
     this.id = uuid();
     this.name = properties.name;
 
@@ -27,31 +47,14 @@ class GameObject {
     };
     loadImage();
 
-    this.type = properties.type ?? 0;
-    this.opacity = properties.opacity ?? 1;
-    this.zIndex = properties.zIndex ?? 0;
-
-    this.positionX = properties.positionX ?? 0;
-    this.positionY = properties.positionY ?? 0;
     this.spriteWidthRaw = properties.spriteWidthRaw;
     this.spriteHeightRaw = properties.spriteHeightRaw;
 
-    this.stateAnim = properties.states ?? {};
     this.stateNames = Object.keys(this.stateAnim);
 
-    this.sizeFactor = properties.sizeFactor ?? 1;
     this.frameX = 0;
     this.frameY = 0;
     this.state = this.stateNames[0];
-    this.speedX = properties.speedX ?? 0;
-    this.speedY = properties.speedY ?? 0;
-
-    this.positionX = properties.positionX ?? 0;
-    this.positionY = properties.positionY ?? 0;
-    this.targetPositionX = properties.targetPositionX ?? this.positionX;
-    this.targetPositionY = properties.targetPositionY ?? this.positionY;
-
-    this.staggerFrames = properties.staggerFrames ?? this.game.staggerFrames;
 
     if (!properties.height && !properties.width) {
       this.width = this.image.naturalWidth;
