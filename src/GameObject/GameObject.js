@@ -24,7 +24,6 @@ class GameObject {
     };
 
     Object.assign(this, {...this.defaultProperties, ...properties});
-    console.log(properties);
 
     this.id = uuid();
     this.name = properties.name;
