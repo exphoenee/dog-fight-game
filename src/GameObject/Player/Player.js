@@ -31,12 +31,13 @@ class Player extends GameObject {
     this.collisions = this.getCollisions();
 
     this.positionX += this.speedX;
-    this.positionY += this.speedY;
+    this.positionY += this.jumpSpeed;
+    // console.log(this.positionX, this.positionY, this.jumpSpeed);
     if (this.positionX - this.width / 2 < 0) this.positionX = this.width / 2;
     if (this.positionX > this.game.canvas.width - this.width / 2)
       this.positionX = this.game.canvas.width - this.width / 2;
     if (!this.onGround) {
-      this.jumpSpeed -= this.weight;
+      this.jumpSpeed += this.weight;
     } else {
       this.positionY = this.groundLevel;
       this.jumpSpeed = 0;
