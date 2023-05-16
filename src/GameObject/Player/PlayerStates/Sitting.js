@@ -1,5 +1,6 @@
 import {running} from "./Running.js";
 import {jumping} from "./Jumping.js";
+import {rolling} from "./Rolling.js";
 import State from "./State.js";
 
 export const sitting = "sitting";
@@ -19,9 +20,10 @@ class Sitting extends State {
       keys.includes(this.keyMap.ArrowRight)
     ) {
       this.player.setState(running);
-    }
-    if (keys.includes(this.keyMap.ArrowUp)) {
+    } else if (keys.includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
+    } else if (keys.includes(this.keyMap.Enter)) {
+      this.player.setState(rolling, 2);
     }
   }
 }
