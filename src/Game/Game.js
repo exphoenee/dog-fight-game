@@ -124,6 +124,19 @@ class Game {
     );
   }
 
+  dashboard() {
+    this.canvasHandler.drawText(`Score: ${this.score}`, 10, 30, {
+      color: "red",
+      fontSize: 20,
+      align: "left",
+    });
+    this.canvasHandler.drawText(`Lives: ${this.lives}`, 10, 60, {
+      color: "red",
+      fontSize: 20,
+      align: "left",
+    });
+  }
+
   waitingStart() {
     this.canvasHandler.drawText("Press Space to start", "center", "center", {
       color: "red",
@@ -169,6 +182,9 @@ class Game {
     this.gameFrame++;
     this.lastTime = timeStamp;
     if ([playing].includes(this.gameState)) this.playing();
+
+    this.dashboard();
+
     window.requestAnimationFrame(this.update.bind(this));
     this.deltaTime = timeStamp - this.lastTime ?? 0;
   }
