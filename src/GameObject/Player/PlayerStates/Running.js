@@ -7,6 +7,7 @@ export const running = "running";
 class Running extends State {
   constructor(player) {
     super(running, player);
+    console.log(this.player.frameY);
   }
 
   enterActions() {}
@@ -19,32 +20,12 @@ class Running extends State {
       this.player.setState(jumping);
     }
     if ([...keys].includes(this.keyMap.ArrowLeft)) {
-      // this.left();
+      this.player.speedX = -this.player.maxSpeedX;
     }
     if ([...keys].includes(this.keyMap.ArrowRight)) {
-      // this.right();
+      this.player.speedX = this.player.maxSpeedX;
     }
   }
-
-  left() {
-    this.player.positionX -= this.player.speedX;
-    if (this.player.positionX - this.player.width / 2 < 0) {
-      this.player.positionX = this.player.width / 2;
-    }
-  }
-
-  right() {
-    this.player.positionX += this.player.speedX;
-    if (
-      this.player.positionX >
-      this.player.game.canvas.width - this.player.width / 2
-    ) {
-      this.player.positionX =
-        this.player.game.canvas.width - this.player.width / 2;
-    }
-  }
-
-  update() {}
 }
 
 export default Running;
