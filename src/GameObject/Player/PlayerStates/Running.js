@@ -18,10 +18,6 @@ class Running extends State {
       this.player.setState(sitting);
     } else if (keys.includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
-    } else if (keys.includes(this.keyMap.ArrowLeft)) {
-      this.player.speedX = -this.player.maxSpeedX;
-    } else if (keys.includes(this.keyMap.ArrowRight)) {
-      this.player.speedX = this.player.maxSpeedX;
     } else if (keys.includes(this.keyMap.Enter)) {
       this.player.setState(rolling);
     }
