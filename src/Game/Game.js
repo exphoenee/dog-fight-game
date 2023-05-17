@@ -36,6 +36,7 @@ class Game {
 
     /* Game Objects */
     this.gameObjects = [];
+    this.particles = [];
 
     this.nrOfPlayers = 1;
     this.nrOfEnemies = 7;
@@ -94,6 +95,7 @@ class Game {
   restartGame() {
     this.gameState = loading;
     this.gameObjects = [];
+    this.particles = [];
     this.gameState = waitingStart;
     this.score = 0;
     this.lives = 3;
@@ -105,6 +107,10 @@ class Game {
     this.gameObjects.forEach((obj) => {
       obj.update();
       if (this.lastTime >= this.fps) obj.draw();
+    });
+    this.particles.forEach((particle) => {
+      particle.update();
+      if (this.lastTime >= this.fps) particle.draw();
     });
   }
 
