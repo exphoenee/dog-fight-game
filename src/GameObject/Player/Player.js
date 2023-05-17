@@ -38,6 +38,21 @@ class Player extends GameObject {
     if (this.positionX - this.width / 2 < 0) this.positionX = this.width / 2;
     if (this.positionX > this.game.canvas.width - this.width / 2)
       this.positionX = this.game.canvas.width - this.width / 2;
+    if (
+      this.game.keyboardHandler.keys.includes(
+        this.game.keyboardHandler.keyMap.ArrowLeft,
+      )
+    ) {
+      this.speedX = -this.maxSpeedX;
+    } else if (
+      this.game.keyboardHandler.keys.includes(
+        this.game.keyboardHandler.keyMap.ArrowRight,
+      )
+    ) {
+      this.speedX = this.maxSpeedX;
+    } else {
+      this.speedX = 0;
+    }
 
     // vertical movement
     this.positionY += this.jumpSpeed;
