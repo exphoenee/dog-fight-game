@@ -13,11 +13,11 @@ class Particle {
     this.speedY = speedY;
     this.alpha = 1;
 
-    this.game.gameObjects.push(this);
+    this.game.particles.length < 200 && this.game.particles.push(this);
   }
 
   remove() {
-    this.game.gameObjects = this.game.gameObjects.filter(
+    this.game.particles = this.game.particles.filter(
       (elem) => this.id !== elem.id,
     );
   }
@@ -29,11 +29,13 @@ class Particle {
     this.size *= 0.95;
 
     if (this.size < 0.1) {
-      this.game.removeGameObject(this);
+      this.remove(this);
     }
   }
 
   draw() {
-    this.game.canvasHandler.drawCircle(this);
+    throw new Error("Particle draw method not implemented.");
   }
 }
+
+export default Particle;
