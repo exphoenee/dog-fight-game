@@ -1,13 +1,13 @@
-import Dust from "../../Particles/Dust";
-
-import State from "./State.js";
+import PlayerState from "./PlayerState";
 import {sitting} from "./Sitting.js";
 import {jumping} from "./Jumping.js";
 import {rolling} from "./Rolling.js";
 
+import Dust from "../../Particles/Dust";
+
 export const running = "running";
 
-class Running extends State {
+class Running extends PlayerState {
   constructor(player) {
     super(running, player);
     console.log(this.player.frameY);
