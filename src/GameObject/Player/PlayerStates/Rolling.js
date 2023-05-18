@@ -1,10 +1,10 @@
-import State from "./State";
+import PlayerState from "./PlayerState";
 import {running} from "./Running";
 import {falling} from "./Falling";
 
 export const rolling = "rolling";
 
-class Rolling extends State {
+class Rolling extends PlayerState {
   constructor(player) {
     super(rolling, player);
   }
@@ -25,7 +25,6 @@ class Rolling extends State {
     ) {
       this.player.jumpSpeed = -this.player.jumpHeight * 0.85;
     }
-
   }
 }
 
