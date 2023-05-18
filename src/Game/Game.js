@@ -19,14 +19,15 @@ class Game {
     /* Keyboard Handler */
     this.keyboardHandler = new KeyboardHandler();
 
-    /* Game state */
-    this.gameStates = getGameStates(this);
-
     /* Canvas */
     this.canvasHandler = new CanvasHandler(this);
     this.canvas = this.canvasHandler.canvas;
     this.ctx = this.canvasHandler.ctx;
     this.groundLevel = this.canvas.height - 50;
+
+    /* Game state */
+    this.gameStates = getGameStates(this);
+    console.log("this.gameStates", this.gameStates);
 
     /* Game Objects */
     this.gameObjects = [];
