@@ -1,11 +1,11 @@
 import GameState from "./GameState";
-import {pause} from "./Pause";
+import {playing} from "./Playing";
 
 export const gameOver = "gameOver";
 
 class GameOver extends GameState {
   constructor(game) {
-    super(game, GameOver);
+    super(game, gameOver);
   }
 
   enterActions() {
@@ -13,12 +13,8 @@ class GameOver extends GameState {
   }
 
   handleInput(keys) {
-    if (
-      this.keys.includes(
-        this.keyMap[" "] || this.keys.includes(this.keyMap.Enter),
-      )
-    ) {
-      this.game.setState(pause);
+    if (keys.includes(this.keyMap.Esc)) {
+      this.game.setState(playing);
     }
   }
 }
