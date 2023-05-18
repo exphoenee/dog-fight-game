@@ -1,11 +1,12 @@
-import State from "./State";
+import PlayerState from "./PlayerState";
+
 import {falling} from "./Falling";
 import {sitting} from "./Sitting";
 import {rolling} from "./Rolling";
 
 export const jumping = "jumping";
 
-class Jumping extends State {
+class Jumping extends PlayerState {
   constructor(player) {
     super(jumping, player);
   }
