@@ -1,5 +1,3 @@
-
-// TODO: refactor it to use a class for every state, like in player states
 class GameState {
   constructor(game, state) {
     this.name = state;
