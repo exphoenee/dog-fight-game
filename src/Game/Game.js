@@ -1,5 +1,6 @@
 import gameConfig from "./gameConfig";
 import getGameStates from "./gameStates";
+import {initialize} from "./GameStates/Initialize";
 
 // constants
 import layerConfig from "../GameObject/BackgroundLayer/layerConfig";
@@ -11,6 +12,7 @@ import Player from "../GameObject/Player/Player";
 
 import Enemy from "../GameObject/Enemy/Enemy";
 import Explosion from "../GameObject/Explosion/Explosion";
+s;
 
 class Game {
   constructor() {
@@ -27,7 +29,7 @@ class Game {
 
     /* Game state */
     this.gameStates = getGameStates(this);
-    console.log("this.gameStates", this.gameStates);
+    this.currentState = this.gameStates[initialize];
 
     /* Game Objects */
     this.gameObjects = [];
@@ -55,6 +57,11 @@ class Game {
     this.addPlayer();
     this.addExplosion();
     this.createEnemies();
+  }
+
+  setState(state) {
+    this.currentState = this.gameStates[state];
+    this.currentState.enter();
   }
 
   addExplosion(optionalProperties = {positionX: 200, positionY: 200}) {
@@ -178,11 +185,14 @@ class Game {
     // if (this.gameState === loading) this.loading();
     // if (this.gameState === gameOver) this.gameOver();
     // if (this.gameState === gamePaused) this.gamePaused();
+    // if ([playing].includes(this.gameState)) this.playing();
+
+    this.currentState.handleInput();
+
     this.handleDebugMode();
 
     this.gameFrame++;
     this.lastTime = timeStamp;
-    // if ([playing].includes(this.gameState)) this.playing();
 
     this.dashboard();
 
