@@ -12,7 +12,6 @@ import Player from "../GameObject/Player/Player";
 
 import Enemy from "../GameObject/Enemy/Enemy";
 import Explosion from "../GameObject/Explosion/Explosion";
-s;
 
 class Game {
   constructor() {
