@@ -29,8 +29,6 @@ class Player extends GameObject {
   update() {
     this.currentState.handleInput(this.game.keyboardHandler.keys);
 
-    console.log(this.currentState.name);
-
     this.collisions = this.getCollisions();
 
     // horizontal movement
