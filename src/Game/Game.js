@@ -1,11 +1,5 @@
 import gameConfig from "./gameConfig";
-import {
-  playing,
-  gameOver,
-  gamePaused,
-  loading,
-  waitingStart,
-} from "./gameStates";
+import getGameStates from "./gameStates";
 
 // constants
 import layerConfig from "../GameObject/BackgroundLayer/layerConfig";
@@ -26,7 +20,7 @@ class Game {
     this.keyboardHandler = new KeyboardHandler();
 
     /* Game state */
-    this.gameState = "loading";
+    this.gameStates = getGameStates(this);
 
     /* Canvas */
     this.canvasHandler = new CanvasHandler(this);
@@ -179,15 +173,15 @@ class Game {
   update(timeStamp = 0) {
     this.canvasHandler.clear();
 
-    if (this.gameState === waitingStart) this.waitingStart();
-    if (this.gameState === loading) this.loading();
-    if (this.gameState === gameOver) this.gameOver();
-    if (this.gameState === gamePaused) this.gamePaused();
+    // if (this.gameState === waitingStart) this.waitingStart();
+    // if (this.gameState === loading) this.loading();
+    // if (this.gameState === gameOver) this.gameOver();
+    // if (this.gameState === gamePaused) this.gamePaused();
     this.handleDebugMode();
 
     this.gameFrame++;
     this.lastTime = timeStamp;
-    if ([playing].includes(this.gameState)) this.playing();
+    // if ([playing].includes(this.gameState)) this.playing();
 
     this.dashboard();
 
