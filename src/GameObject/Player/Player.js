@@ -1,7 +1,7 @@
 import GameObject from "../GameObject";
 import playerProperty from "./playerProperty";
 
-import getPlayerStates from "./PlayerStates";
+import getPlayerStates from "./playerStates";
 import {sitting} from "./PlayerStates/Sitting";
 
 class Player extends GameObject {
