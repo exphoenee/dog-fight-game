@@ -1,12 +1,12 @@
 
 // TODO: refactor it to use a class for every state, like in player states
 class GameState {
-  constructor(state, game) {
+  constructor(game, state) {
     this.name = state;
     this.game = game;
     this.player = game.player;
-    this.keyMap = game.keyboardHandler.keyMap;
     this.keys = game.keyboardHandler.keys;
+    this.keyMap = game.keyboardHandler.keyMap;
   }
 
   enterActions() {
@@ -23,5 +23,3 @@ class GameState {
 }
 
 export default GameState;
-
-const getStates = (game) => (
