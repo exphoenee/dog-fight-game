@@ -1,18 +1,3 @@
-// import {
-//   sitting,
-//   walkLeft,
-//   walkRight,
-//   idle,
-//   jump,
-//   fall,
-//   run,
-//   dizzy,
-//   roll,
-//   bite,
-//   ko,
-//   getHit,
-// } from "../GameObject/Player/PlayerStates";
-
 class KeyboardHandler {
   #keys = new Set();
   #lastKey = "";
@@ -25,6 +10,7 @@ class KeyboardHandler {
     " ": "SPACE",
     d: "D",
     Enter: "ENTER",
+    Esc: "ESC",
   };
 
   constructor() {
