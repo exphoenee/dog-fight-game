@@ -13,8 +13,8 @@ class Initialize extends GameState {
   }
 
   handleInput(keys) {
-    if (keys.includes(this.keyMap.Esc)) {
-      this.game.setState(loading);
+    if (this.game.loadedGameObjects == this.game.gameObjectsToLoad) {
+      this.game.setState(waitingStart);
     }
   }
 }
