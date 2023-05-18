@@ -1,7 +1,15 @@
-export const playing = "playing";
-export const gameOver = "gameOver";
-export const gamePaused = "gamePaused";
-export const loading = "loading";
-export const waitingStart = "waitingStart";
+import GameOver from "./GameStates/GameOver";
+import Playing from "./GameStates/Playing";
+import Pause from "./GameStates/Pause";
+import Loading from "./GameStates/Loading";
+import WaitingStart from "./GameStates/WaitingStart";
 
-// TODO: refactor it to use a class for every state, like in player states
+const getGameStates = (Game) =>
+  [GameOver, Playing, Pause, Loading, WaitingStart]
+    .map((State) => new State(Game))
+    .reduce((acc, State) => {
+      acc[State.name] = State;
+      return acc;
+    }, {});
+
+export default getGameStates;
