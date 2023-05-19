@@ -18,6 +18,8 @@ class Loading extends GameState {
         (acc, obj) => acc + (obj.isLoading ? 0 : 1),
         0,
       ) / this.game.gameObjects.length;
+
+    console.log(loaded);
     this.canvasHandler.drawText(
       `Loading... ${Math.round(loaded > 1 ? 1 : loaded * 100)}%`,
       "center",
