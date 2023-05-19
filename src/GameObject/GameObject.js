@@ -38,7 +38,6 @@ class GameObject {
       try {
         await this.image.decode();
         this.game.gameObjects.push(this);
-        this.game.loadedGameObjects++;
         this.isLoading = false;
       } catch (e) {
         this.error = true;
