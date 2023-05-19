@@ -17,17 +17,32 @@ class Playing extends GameState {
     this.game.gameObjects.sort((a, b) => a.positionY - b.positionY);
     this.game.gameObjects.forEach((obj) => {
       obj.update();
-      if (this.lastTime >= this.fps) obj.draw();
+      if (this.game.lastTime >= this.game.fps) obj.draw();
     });
-    this.particles.forEach((particle) => {
-      particle.update();
-      if (this.lastTime >= this.fps) particle.draw();
+    this.game.particles.forEach((particle) => {
+      particle.game.update();
+      if (this.game.lastTime >= this.game.fps) particle.draw();
+    });
+
+    // dashBoard
+    this.canvasHandler.drawText(`Score: ${this.game.score}`, 10, 30, {
+      color: "red",
+      fontSize: 20,
+      align: "left",
+    });
+    this.canvasHandler.drawText(`Lives: ${this.game.lives}`, 10, 60, {
+      color: "red",
+      fontSize: 20,
+      align: "left",
     });
   }
 
   handleInput(keys) {
-    if (keys.includes(this.keyMap.Esc)) {
+    if (keys.includes(this.keyMap.Escape)) {
       this.game.setState(pause);
+    }
+    if (this.game.lives <= 0) {
+      this.game.setState(gameOver);
     }
   }
 }
