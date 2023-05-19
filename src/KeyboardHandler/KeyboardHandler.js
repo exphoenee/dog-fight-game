@@ -10,7 +10,7 @@ class KeyboardHandler {
     " ": "SPACE",
     d: "D",
     Enter: "ENTER",
-    Esc: "ESC",
+    Escape: "ESC",
   };
 
   constructor() {
