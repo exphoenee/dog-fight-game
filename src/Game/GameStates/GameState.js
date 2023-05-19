@@ -3,6 +3,7 @@ class GameState {
     this.name = state;
     this.game = game;
     this.player = game.player;
+    this.keyMap = game.keyboardHandler.keyMap;
     this.keyboardHandler = game.keyboardHandler;
     this.canvasHandler = game.canvasHandler;
   }
