@@ -20,7 +20,7 @@ class Playing extends GameState {
       if (this.game.lastTime >= this.game.fps) obj.draw();
     });
     this.game.particles.forEach((particle) => {
-      particle.game.update();
+      particle.update();
       if (this.game.lastTime >= this.game.fps) particle.draw();
     });
 
