@@ -12,6 +12,13 @@ class GameOver extends GameState {
     // Pass
   }
 
+  render() {
+    this.canvasHandler.drawText("Game Over!", "center", "center", {
+      color: "red",
+      fontSize: 50,
+    });
+  }
+
   handleInput(keys) {
     if (keys.includes(this.keyMap.Esc)) {
       this.game.setState(playing);
