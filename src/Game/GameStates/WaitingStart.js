@@ -25,12 +25,7 @@ class WaitingStart extends GameState {
   }
 
   handleInput(keys) {
-    console.log(this.keyboardHandler.keyMap);
-    if (
-      keys.includes(this.keyboardHandler.keyMap.Esc) ||
-      keys.includes(this.keyboardHandler.keyMap.Enter) ||
-      keys.includes(this.keyboardHandler.keyMap[" "])
-    ) {
+    if (keys.length > 0) {
       console.log("first");
       this.game.setState(playing);
     }
