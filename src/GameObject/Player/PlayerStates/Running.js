@@ -10,7 +10,6 @@ export const running = "running";
 class Running extends PlayerState {
   constructor(player) {
     super(running, player);
-    console.log(this.player.frameY);
   }
 
   enterActions() {}
