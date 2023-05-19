@@ -44,6 +44,7 @@ class Game {
     /* Game state */
     this.gameStates = getGameStates(this);
     this.currentState = this.gameStates[initialize];
+    this.currentState.enter();
   }
 
   setState(state) {
