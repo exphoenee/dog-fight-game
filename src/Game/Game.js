@@ -81,22 +81,11 @@ class Game {
     properties.forEach((layer) => new Layer(this, layer));
   }
 
-  handleDebugMode() {
-    if (this.keyboardHandler.lastKey === "D_PRESSED") {
-      this.debugMode = true;
-    }
-    if (this.keyboardHandler.lastKey === "D_RELEASED") {
-      this.debugMode = false;
-    }
-  }
-
   update(timeStamp = 0) {
     this.canvasHandler.clear();
 
     this.currentState.handleInput(this.keyboardHandler.keys);
     this.currentState.render();
-
-    this.handleDebugMode();
 
     this.gameFrame++;
     this.lastTime = timeStamp;
