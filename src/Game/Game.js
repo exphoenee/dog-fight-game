@@ -93,15 +93,6 @@ class Game {
     properties.forEach((layer) => new Layer(this, layer));
   }
 
-  restartGame() {
-    this.gameState = loading;
-    this.gameObjects = [];
-    this.particles = [];
-    this.gameState = waitingStart;
-    this.score = 0;
-    this.lives = 3;
-  }
-
   playing() {
     this.gameObjects.sort((a, b) => a.zIndex - b.zIndex);
     this.gameObjects.sort((a, b) => a.positionY - b.positionY);
@@ -115,21 +106,6 @@ class Game {
     });
   }
 
-  loading() {
-    const loaded = this.loadedGameObjects / this.gameObjectsToLoad;
-    if (loaded >= 1) {
-      this.gameState = waitingStart;
-    }
-    this.canvasHandler.drawText(
-      `Loading... ${Math.round(loaded > 1 ? 1 : loaded * 100)}%`,
-      "center",
-      "center",
-      {
-        color: "red",
-        fontSize: 50,
-      },
-    );
-  }
 
   dashboard() {
     this.canvasHandler.drawText(`Score: ${this.score}`, 10, 30, {
@@ -144,15 +120,7 @@ class Game {
     });
   }
 
-  waitingStart() {
-    this.canvasHandler.drawText("Press Space to start", "center", "center", {
-      color: "red",
-      fontSize: 50,
-    });
-    if (this.keyboardHandler.lastKey === "SPACE_RELEASED") {
-      this.gameState = playing;
-    }
-  }
+  waitingStart() {}
 
   handleDebugMode() {
     if (this.keyboardHandler.lastKey === "D_PRESSED") {
@@ -186,7 +154,9 @@ class Game {
     // if (this.gameState === gamePaused) this.gamePaused();
     // if ([playing].includes(this.gameState)) this.playing();
 
-    this.currentState.handleInput();
+    this.currentState.handleInput(this.keyboardHandler.keys);
+    this.currentState.render();
+    // console.log(this.currentState.name);
 
     this.handleDebugMode();
 
