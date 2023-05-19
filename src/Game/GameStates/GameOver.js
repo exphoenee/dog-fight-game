@@ -1,5 +1,5 @@
 import GameState from "./GameState";
-import {playing} from "./Playing";
+import {initialize} from "./Initialize";
 
 export const gameOver = "gameOver";
 
@@ -13,15 +13,20 @@ class GameOver extends GameState {
   }
 
   render() {
-    this.canvasHandler.drawText("Game Over!", "center", "center", {
-      color: "red",
-      fontSize: 50,
-    });
+    this.canvasHandler.drawText(
+      "Game Over! Press any key to restart.",
+      "center",
+      "center",
+      {
+        color: "red",
+        fontSize: 50,
+      },
+    );
   }
 
   handleInput(keys) {
-    if (keys.includes(this.keyMap.Esc)) {
-      this.game.setState(playing);
+    if (keys.length > 0) {
+      this.game.setState(initialize);
     }
   }
 }
