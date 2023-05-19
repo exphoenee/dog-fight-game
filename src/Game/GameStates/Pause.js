@@ -12,8 +12,20 @@ class Pause extends GameState {
     // Pass
   }
 
+  render() {
+    this.canvasHandler.drawText(
+      "Paused press space to continue",
+      "center",
+      "center",
+      {
+        color: "red",
+        fontSize: 50,
+      },
+    );
+  }
+
   handleInput(keys) {
-    if (keys.includes(this.keyMap.Esc)) {
+    if (keys.includes(this.keyMap[" "])) {
       this.game.setState(playing);
     }
   }
