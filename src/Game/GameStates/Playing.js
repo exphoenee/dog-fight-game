@@ -44,6 +44,12 @@ class Playing extends GameState {
     if (this.game.lives <= 0) {
       this.game.setState(gameOver);
     }
+    if (this.keyboardHandler.lastKey === "D_PRESSED") {
+      this.game.debugMode = true;
+    }
+    if (this.keyboardHandler.lastKey === "D_RELEASED") {
+      this.game.debugMode = false;
+    }
   }
 }
 
