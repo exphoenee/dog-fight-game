@@ -3,8 +3,8 @@ class GameState {
     this.name = state;
     this.game = game;
     this.player = game.player;
-    this.keys = game.keyboardHandler.keys;
-    this.keyMap = game.keyboardHandler.keyMap;
+    this.keyboardHandler = game.keyboardHandler;
+    this.canvasHandler = game.canvasHandler;
   }
 
   enterActions() {
@@ -13,6 +13,10 @@ class GameState {
 
   enter() {
     this.enterActions();
+  }
+
+  render() {
+    throw new Error("render method not implemented");
   }
 
   handleInput() {
