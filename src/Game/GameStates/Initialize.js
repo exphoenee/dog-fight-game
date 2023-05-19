@@ -9,13 +9,14 @@ class Initialize extends GameState {
   }
 
   enterActions() {
-    // Pass
+    this.game.gameObjects = [];
+    this.game.particles = [];
+    this.game.score = 0;
+    this.game.lives = 3;
   }
 
   handleInput(keys) {
-    if (this.game.loadedGameObjects == this.game.gameObjectsToLoad) {
-      this.game.setState(waitingStart);
-    }
+    this.game.setState(loading);
   }
 }
 
