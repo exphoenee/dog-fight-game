@@ -1,5 +1,5 @@
 import GameState from "./GameState";
-import {playing} from "./Playing";
+import {waitingStart} from "./WaitingStart";
 
 export const loading = "loading";
 
@@ -9,12 +9,29 @@ class Loading extends GameState {
   }
 
   enterActions() {
-    // Pass
+    // pass
+  }
+
+  render() {
+    const loaded =
+      this.game.gameObjects.reduce(
+        (acc, obj) => acc + (obj.isLoading ? 0 : 1),
+        0,
+      ) / this.game.gameObjects.length;
+    this.canvasHandler.drawText(
+      `Loading... ${Math.round(loaded > 1 ? 1 : loaded * 100)}%`,
+      "center",
+      "center",
+      {
+        color: "red",
+        fontSize: 50,
+      },
+    );
   }
 
   handleInput(keys) {
-    if (keys.includes(this.keyMap.Esc)) {
-      this.game.setState(playing);
+    if (this.game.gameObjects.every((obj) => !obj.isLoading)) {
+      this.game.setState(waitingStart);
     }
   }
 }
