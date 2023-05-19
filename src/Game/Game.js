@@ -81,19 +81,6 @@ class Game {
     properties.forEach((layer) => new Layer(this, layer));
   }
 
-  dashboard() {
-    this.canvasHandler.drawText(`Score: ${this.score}`, 10, 30, {
-      color: "red",
-      fontSize: 20,
-      align: "left",
-    });
-    this.canvasHandler.drawText(`Lives: ${this.lives}`, 10, 60, {
-      color: "red",
-      fontSize: 20,
-      align: "left",
-    });
-  }
-
   handleDebugMode() {
     if (this.keyboardHandler.lastKey === "D_PRESSED") {
       this.debugMode = true;
@@ -103,39 +90,16 @@ class Game {
     }
   }
 
-  gameOver() {
-    this.canvasHandler.drawText("Game Over!", "center", "center", {
-      color: "red",
-      fontSize: 50,
-    });
-  }
-
-  gamePaused() {
-    this.canvasHandler.drawText("Paused", "center", "center", {
-      color: "red",
-      fontSize: 50,
-    });
-  }
-
   update(timeStamp = 0) {
     this.canvasHandler.clear();
 
-    // if (this.gameState === waitingStart) this.waitingStart();
-    // if (this.gameState === loading) this.loading();
-    // if (this.gameState === gameOver) this.gameOver();
-    // if (this.gameState === gamePaused) this.gamePaused();
-    // if ([playing].includes(this.gameState)) this.playing();
-
     this.currentState.handleInput(this.keyboardHandler.keys);
     this.currentState.render();
-    // console.log(this.currentState.name);
 
     this.handleDebugMode();
 
     this.gameFrame++;
     this.lastTime = timeStamp;
-
-    this.dashboard();
 
     window.requestAnimationFrame(this.update.bind(this));
     this.deltaTime = timeStamp - this.lastTime ?? 0;
