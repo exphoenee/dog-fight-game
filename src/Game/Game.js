@@ -26,28 +26,12 @@ class Game {
     this.ctx = this.canvasHandler.ctx;
     this.groundLevel = this.canvas.height - 50;
 
-    /* Game state */
-    this.gameStates = getGameStates(this);
-    this.currentState = this.gameStates[initialize];
-
     /* Game Objects */
     this.gameObjects = [];
     this.particles = [];
 
-    this.nrOfPlayers = 1;
-    this.nrOfEnemies = 7;
-    this.nrOfExplosions = 1;
-
     this.layerType = Object.keys(layerConfig)[0];
     this.nrOfLayers = layerConfig[this.layerType].properties.length;
-
-    this.gameObjectsToLoad =
-      this.nrOfLayers +
-      this.nrOfPlayers +
-      this.nrOfEnemies +
-      this.nrOfExplosions;
-
-    this.loadedGameObjects = 0;
 
     this.score = 0;
     this.lives = 3;
@@ -56,6 +40,10 @@ class Game {
     this.addPlayer();
     this.addExplosion();
     this.createEnemies();
+
+    /* Game state */
+    this.gameStates = getGameStates(this);
+    this.currentState = this.gameStates[initialize];
   }
 
   setState(state) {
@@ -93,20 +81,6 @@ class Game {
     properties.forEach((layer) => new Layer(this, layer));
   }
 
-  playing() {
-    this.gameObjects.sort((a, b) => a.zIndex - b.zIndex);
-    this.gameObjects.sort((a, b) => a.positionY - b.positionY);
-    this.gameObjects.forEach((obj) => {
-      obj.update();
-      if (this.lastTime >= this.fps) obj.draw();
-    });
-    this.particles.forEach((particle) => {
-      particle.update();
-      if (this.lastTime >= this.fps) particle.draw();
-    });
-  }
-
-
   dashboard() {
     this.canvasHandler.drawText(`Score: ${this.score}`, 10, 30, {
       color: "red",
@@ -119,8 +93,6 @@ class Game {
       align: "left",
     });
   }
-
-  waitingStart() {}
 
   handleDebugMode() {
     if (this.keyboardHandler.lastKey === "D_PRESSED") {
