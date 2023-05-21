@@ -6,6 +6,7 @@ class Particle {
     {positionX, positionY, size, color, opacity, speedX, speedY, image, name},
   ) {
     this.game = game;
+    this.player = game.player;
     this.canvasHandler = this.game.canvasHandler;
     this.id = uuid();
     if (name) this.name = name;
