@@ -4,6 +4,8 @@ import {falling} from "./Falling";
 
 export const rolling = "rolling";
 
+import Fire from "../../Particles/Fire";
+
 class Rolling extends PlayerState {
   constructor(player) {
     super(rolling, player);
@@ -16,6 +18,10 @@ class Rolling extends PlayerState {
   }
 
   handleInput(keys) {
+    new Fire(this.player.game, {
+      positionX: this.player.positionX,
+      positionY: this.player.positionY,
+    });
     if (!keys.includes(this.keyMap.Enter))
       this.player.setState(this.player.onGround() ? running : falling);
     else if (
