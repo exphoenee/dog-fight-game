@@ -12,13 +12,14 @@ class Rolling extends PlayerState {
   }
 
   enterActions() {
+    this.game.gameSpeed = 10;
     if (this.player.onGround()) {
       this.player.jumpSpeed = 0;
     }
   }
 
   handleInput(keys) {
-    new Fire(this.player.game, {
+    new Fire(this.game, {
       positionX: this.player.positionX,
       positionY: this.player.positionY,
     });
