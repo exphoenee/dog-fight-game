@@ -23,6 +23,13 @@ class Rolling extends PlayerState {
       positionX: this.player.positionX,
       positionY: this.player.positionY,
     });
+    this.player.collisions?.enemy &&
+      this.player.collisions.enemy.forEach((collision) => {
+        if (collision.name === "enemy") {
+          collision.remove();
+          this.game.score++;
+        }
+      });
     if (!keys.includes(this.keyMap.Enter))
       this.player.setState(this.player.onGround() ? running : falling);
     else if (
