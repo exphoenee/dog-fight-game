@@ -3,11 +3,12 @@ import {v4 as uuid} from "uuid";
 class Particle {
   constructor(
     game,
-    {positionX, positionY, size, color, opacity, speedX, speedY, texture},
+    {positionX, positionY, size, color, opacity, speedX, speedY, image, name},
   ) {
     this.game = game;
     this.canvasHandler = this.game.canvasHandler;
     this.id = uuid();
+    this.name = name;
 
     this.positionX = positionX;
     this.positionY = positionY;
@@ -17,7 +18,7 @@ class Particle {
     this.speedY = speedY;
     this.opacity = opacity ?? 1;
 
-    this.imageName = texture;
+    this.imageName = image;
 
     this.image = new Image();
     const loadImage = async () => {
@@ -31,8 +32,13 @@ class Particle {
         throw new Error(`Error loading image ${this.imageName}`);
       }
     };
-    if (texture) loadImage();
+    if (image) loadImage();
     else this.game.particles.length < 1000 && this.game.particles.push(this);
+
+    this.frameX = 0;
+    this.frameY = 0;
+    this.sizeFactor = 1;
+    this.mirrored = false;
   }
 
   remove() {
