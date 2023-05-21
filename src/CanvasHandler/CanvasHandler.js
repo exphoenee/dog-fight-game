@@ -38,14 +38,25 @@ class CanvasHandler {
   }
 
   drawCircle(x, y, radius, options) {
-    const {color, opacity} = {...{color: "black", opacity: 1}, ...options};
+    const {color, opacity, fillColor, fillOpacity} = {
+      ...{color: "black", opacity: 1, fillColor: false, fillOpacity: false},
+      ...options,
+    };
 
-    this.drawWithStyle({opacity}, () => {
-      this.ctx.beginPath();
-      this.ctx.strokeStyle = color;
-      this.ctx.arc(x, y, radius, 0, Math.PI * 2);
-      this.ctx.stroke();
-    });
+    fillColor && !color
+      ? this.drawWithStyle({opacity}, () => {
+          this.ctx.beginPath();
+          this.ctx.strokeStyle = color;
+          this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+          this.ctx.stroke();
+        })
+      : this.drawWithStyle({opacity: fillOpacity ?? opacity}, () => {
+          this.ctx.beginPath();
+          this.ctx.strokeStyle = fillColor;
+          this.ctx.fillStyle = fillColor;
+          this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+          this.ctx.fill();
+        });
   }
 
   drawRectangle(x, y, width, height, options) {
