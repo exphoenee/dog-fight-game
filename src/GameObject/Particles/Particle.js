@@ -1,19 +1,38 @@
 import {v4 as uuid} from "uuid";
 
 class Particle {
-  constructor(game, {x, y, size, color, speedX, speedY}) {
+  constructor(
+    game,
+    {positionX, positionY, size, color, opacity, speedX, speedY, texture},
+  ) {
     this.game = game;
+    this.canvasHandler = this.game.canvasHandler;
     this.id = uuid();
 
-    this.positionX = x;
-    this.positionY = y;
+    this.positionX = positionX;
+    this.positionY = positionY;
     this.size = size;
     this.color = color;
     this.speedX = speedX;
     this.speedY = speedY;
-    this.alpha = 1;
+    this.opacity = opacity ?? 1;
 
-    this.game.particles.length < 200 && this.game.particles.push(this);
+    this.imageName = texture;
+
+    this.image = new Image();
+    const loadImage = async () => {
+      this.image.src = `./assets/${this.imageName}.png`;
+      try {
+        await this.image.decode();
+        this.game.particles.length < 300 && this.game.particles.push(this);
+        this.isLoading = false;
+      } catch (e) {
+        this.error = true;
+        throw new Error(`Error loading image ${this.imageName}`);
+      }
+    };
+    if (texture) loadImage();
+    else this.game.particles.length < 1000 && this.game.particles.push(this);
   }
 
   remove() {
@@ -23,14 +42,7 @@ class Particle {
   }
 
   update() {
-    this.positionX += this.speedX;
-    this.positionY += this.speedY;
-    this.alpha -= 0.01;
-    this.size *= 0.95;
-
-    if (this.size < 0.1) {
-      this.remove(this);
-    }
+    throw new Error("Particle update method not implemented.");
   }
 
   draw() {
