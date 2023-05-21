@@ -92,6 +92,21 @@ class CanvasHandler {
     this.ctx.restore();
   }
 
+  drawParticle(particle) {
+    this.ctx.save();
+    this.ctx.globalAlpha = particle.opacity;
+    this.ctx.translate(particle.positionX, particle.positionY);
+    this.ctx.rotate((particle.angle * Math.PI) / 180);
+    this.ctx.drawImage(
+      particle.image,
+      -particle.width / 2,
+      -particle.height / 2,
+      particle.width,
+      particle.height,
+    );
+    this.ctx.restore();
+  }
+
   drawText(text, x, y, options) {
     const {font, fontSize, color, weight, align, baseline, opacity} = {
       ...{
@@ -120,6 +135,9 @@ class CanvasHandler {
   }
 
   drawSprite(gameObject, opacity = 1) {
+    if (gameObject.name === "fire") {
+      console.log(gameObject);
+    }
     const {mirrored} = gameObject;
     this.drawWithStyle(
       {
