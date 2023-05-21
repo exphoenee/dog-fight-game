@@ -4,8 +4,8 @@ import {falling} from "./PlayerStates/Falling";
 import {running} from "./PlayerStates/Running";
 import {rolling} from "./PlayerStates/Rolling";
 import {diving} from "./PlayerStates/Diving";
+import {dizzy} from "./PlayerStates/Dizzy";
 // import idle from "./PlayerStates/Idle";
-// import {dizzy} from "./PlayerStates/Dizzy";
 // import {biting} from "./PlayerStates/Biting";
 // import {ko} from "./PlayerStates/KO";
 // import {getHit} from "./PlayerStates/GetHit";
@@ -29,7 +29,7 @@ const playerProperty = {
     [falling]: {frameY: 2, frameNrX: 6},
     [rolling]: {frameY: 6, frameNrX: 7},
     [diving]: {frameY: 6, frameNrX: 7},
-    // [dizzy]: {frameY: 4, frameNrX: 11},
+    [dizzy]: {frameY: 4, frameNrX: 11},
     // [biting]: {frameY: 7, frameNrX: 7},
     // [ko]: {frameY: 8, frameNrX: 12},
     // [getHit]: {frameY: 9, frameNrX: 4},
