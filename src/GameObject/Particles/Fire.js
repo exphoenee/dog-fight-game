@@ -13,23 +13,25 @@ class Fire extends Particle {
       image: "fire",
       name: "fire",
     });
+    this.size = Math.random() * 2 + 1;
     this.width = 100;
     this.height = 90;
-    this.angle = Math.random() * 360;
-    this.angleSpeed = Math.random() * 2 - 1;
+    this.angle = Math.random() * 0.2 + 0.1;
+    this.angleSpeed = Math.random() * 0.5 + 1;
+    this.sizeChangeSpeed = 0.97
   }
 
   update() {
     this.angle += this.angleSpeed;
-    this.positionX += this.speedX;
+    this.positionX += Math.sin(this.angle) * 1 + this.speedX;
     this.positionY += this.speedY;
     if (this.opacity > 0.01) this.opacity -= 0.01;
-    if (this.size > 1) this.size *= 0.95;
+    if (this.size > 0.5) this.size *= this.sizeChangeSpeed;
     else this.remove(this);
   }
 
   draw() {
-    this.canvasHandler.drawParticle(this);
+    this.canvasHandler.drawParticle(this, {rotate: this.angle});
   }
 }
 
