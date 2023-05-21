@@ -8,7 +8,8 @@ class Particle {
     this.game = game;
     this.canvasHandler = this.game.canvasHandler;
     this.id = uuid();
-    this.name = name;
+    if (name) this.name = name;
+    else throw new Error("Particle name not defined.");
 
     this.positionX = positionX;
     this.positionY = positionY;
@@ -33,7 +34,9 @@ class Particle {
       }
     };
     if (image) loadImage();
-    else this.game.particles.length < 1000 && this.game.particles.push(this);
+    else
+      this.game.particles.length < this.game.particleNumber &&
+        this.game.particles.push(this);
 
     this.frameX = 0;
     this.frameY = 0;
