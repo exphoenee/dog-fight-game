@@ -64,6 +64,8 @@ class Player extends GameObject {
 
     const {frameNrX} = this.stateAnim[this.state];
 
+    console.log(this.state);
+
     this.frameX =
       Math.floor(this.game.gameFrame / this.game.staggerFrames) % frameNrX;
   }
