@@ -15,6 +15,7 @@ class BackgroundLayer extends GameObject {
   }
 
   update() {
+    this.speed = this.game.gameSpeed * this.speedModifier;
     if (this.positionX <= (-this.width * this.canvasHeight) / this.height)
       this.positionX = Math.floor(this.width + this.positionX2 - this.speed);
     else this.positionX -= this.speed;
