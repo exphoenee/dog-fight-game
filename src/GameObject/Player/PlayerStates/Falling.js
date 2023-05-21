@@ -11,6 +11,7 @@ class Falling extends PlayerState {
   }
 
   enterActions() {
+    this.game.gameSpeed = 10;
     if (this.player.onGround()) {
       this.player.jumpSpeed = 0;
     }
