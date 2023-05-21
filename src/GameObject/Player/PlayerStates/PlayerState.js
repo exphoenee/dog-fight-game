@@ -1,6 +1,7 @@
 class PlayerState {
   constructor(state, player) {
     this.name = state;
+    this.game = player.game;
     this.player = player;
     this.keyMap = player.game.keyboardHandler.keyMap;
   }
