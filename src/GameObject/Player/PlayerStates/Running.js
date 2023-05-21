@@ -16,10 +16,8 @@ class Running extends PlayerState {
 
   handleInput(keys) {
     new Dust(this.player.game, {
-      x: this.player.positionX,
-      y: this.player.positionY + this.player.height / 2,
-      size: 10,
-      color: "black",
+      positionX: this.player.positionX - this.player.width * 0.3,
+      positionY: this.player.positionY + this.player.height * 0.4,
     });
     if (keys.includes(this.keyMap.ArrowDown)) {
       this.player.setState(sitting);
