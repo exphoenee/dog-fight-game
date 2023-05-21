@@ -5,7 +5,7 @@ class Dust extends Particle {
     super(game, {
       positionX,
       positionY,
-      size: Math.random() * 5 + 10,
+      size: Math.random() * 5 + 15,
       speedX: Math.random() * -1,
       speedY: Math.random() * -1,
       color: "black",
