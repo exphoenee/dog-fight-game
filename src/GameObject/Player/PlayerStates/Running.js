@@ -2,6 +2,7 @@ import PlayerState from "./PlayerState";
 import {sitting} from "./Sitting.js";
 import {jumping} from "./Jumping.js";
 import {rolling} from "./Rolling.js";
+import {dizzy} from "./Dizzy";
 
 import Dust from "../../Particles/Dust";
 
@@ -28,6 +29,7 @@ class Running extends PlayerState {
     } else if (keys.includes(this.keyMap.Enter)) {
       this.player.setState(rolling);
     }
+    this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
   }
 }
 
