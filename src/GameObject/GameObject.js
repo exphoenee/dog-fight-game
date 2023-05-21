@@ -25,7 +25,8 @@ class GameObject {
     Object.assign(this, {...this.defaultProperties, ...properties});
 
     this.id = uuid();
-    this.name = properties.name;
+    if (properties.name) this.name = properties.name;
+    else throw new Error("Game object name not defined.");
 
     this.imageName = properties.imageName;
 
