@@ -1,7 +1,7 @@
 import PlayerState from "./PlayerState";
-import {running} from "./Running";
 import {sitting} from "./Sitting";
-import {rolling} from "./Rolling";
+import { rolling } from "./Rolling";
+import {dizzy} from "./Dizzy";
 
 export const falling = "falling";
 
@@ -23,6 +23,7 @@ class Falling extends PlayerState {
     } else if (keys.includes(this.keyMap.Enter)) {
       this.player.setState(rolling);
     }
+    this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
   }
 }
 
