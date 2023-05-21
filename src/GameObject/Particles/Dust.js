@@ -1,22 +1,33 @@
 import Particle from "./Particle.js";
 
 class Dust extends Particle {
-  constructor(game, {x, y, size, color, speedX, speedY}) {
-    super(game, {x, y, size, color, speedX, speedY});
-    this.size = Math.random() * 10 + 10;
-    this.speedX = Math.random() * 2 - 1;
-    this.speedY = Math.random() * 2 - 1;
-    this.color = "black";
-    this.alpha = 0.5;
+  constructor(game, {positionX, positionY}) {
+    super(game, {
+      positionX,
+      positionY,
+      size: Math.random() * 5 + 10,
+      speedX: Math.random() * -1,
+      speedY: Math.random() * -1,
+      color: "black",
+      opacity: 0.5,
+    });
+  }
+
+  update() {
+    this.positionX += this.speedX;
+    this.positionY += this.speedY;
+    if (this.opacity > 0.01) this.opacity -= 0.01;
+    if (this.size > 1) this.size *= 0.95;
+    else this.remove(this);
   }
 
   draw() {
-    this.game.canvasHandler.drawCircle(
-      this.positionX,
-      this.positionY,
-      this.size,
-      {color: this.color, opacity: this.alpha},
-    );
+    this.canvasHandler.drawCircle(this.positionX, this.positionY, this.size, {
+      color: this.color,
+      opacity: this.opacity,
+      fillColor: this.color,
+      fillOpacity: this.opacity,
+    });
   }
 }
 
