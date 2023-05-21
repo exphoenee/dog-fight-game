@@ -9,7 +9,8 @@ class Dust extends Particle {
       speedX: Math.random() * -1,
       speedY: Math.random() * -1,
       color: "black",
-      opacity: 0.5,
+      opacity: 0.3,
+      name: "dust",
     });
   }
 
