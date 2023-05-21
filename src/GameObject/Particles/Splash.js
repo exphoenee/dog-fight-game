@@ -5,30 +5,32 @@ class Splash extends Particle {
     super(game, {
       positionX,
       positionY,
-      speedX: Math.random() * 6 - 3,
-      speedY: Math.random() * 2 + 2,
-      color: "black",
-      opacity: 0.5,
       image: "fire",
+      opacity: 0.75,
       name: "splash",
     });
-    this.size = 0.5;
+
+    this.startTime = this.game.gameFrame;
+    this.size = Math.random() * 0.1 + 0.1;
     this.width = 100;
     this.height = 90;
-    this.gravity = 0;
-    this.sizeChangeSpeed = 0.95;
+    this.gravity = -8;
+    this.accX = Math.random() * 3 - 1.5;
+    this.speedX = Math.random() * 0.2 - 0.1;
+    this.speedY = Math.random() * 0.3 + 0.2;
   }
 
   update() {
-    this.gravity += 0.1;
-    // this.positionX += Math.sin(this.angle) * 1 + this.speedX;
-    // this.positionY += this.gravity;
-    if (this.opacity > 0.01) this.opacity -= 0.01;
-    if (this.size > 0.5) this.size *= this.sizeChangeSpeed;
-    else this.remove(this);
+    this.gravity += this.speedY;
+    this.accX += this.speedX;
+    this.positionX += this.accX;
+    this.positionY += this.gravity;
+    if (this.game.gameFrame - this.startTime > 3 * 16) this.opacity -= 0.03;
+    this.opacity <= 0 && this.remove();
   }
 
   draw() {
+    // this.canvasHandler.ctx.drawImage(this.image, this.positionX, this.positionY,this.size, this.size);
     this.canvasHandler.drawParticle(this);
   }
 }
