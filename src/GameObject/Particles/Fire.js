@@ -10,11 +10,17 @@ class Fire extends Particle {
       speedY: Math.random() * -1,
       color: "black",
       opacity: 0.5,
-      texture: "fire",
+      image: "fire",
+      name: "fire",
     });
+    this.width = 100;
+    this.height = 90;
+    this.angle = Math.random() * 360;
+    this.angleSpeed = Math.random() * 2 - 1;
   }
 
   update() {
+    this.angle += this.angleSpeed;
     this.positionX += this.speedX;
     this.positionY += this.speedY;
     if (this.opacity > 0.01) this.opacity -= 0.01;
@@ -23,12 +29,7 @@ class Fire extends Particle {
   }
 
   draw() {
-    this.canvasHandler.drawCircle(this.positionX, this.positionY, this.size, {
-      color: this.color,
-      opacity: this.opacity,
-      fillColor: this.color,
-      fillOpacity: this.opacity,
-    });
+    this.canvasHandler.drawParticle(this);
   }
 }
 
