@@ -14,7 +14,7 @@ class Diving extends PlayerState {
 
   enterActions() {
     this.game.gameSpeed = 0;
-    this.player.jumpSpeed = 0;
+    this.player.jumpSpeed = 25;
   }
 
   handleInput(keys) {
@@ -27,10 +27,17 @@ class Diving extends PlayerState {
       for (let i = 0; i < 30; i++) {
         new Splash(this.game, {
           positionX: this.player.positionX,
-          positionY: this.player.positionY,
+          positionY: this.player.positionY + this.player.height * 0.7,
         });
       }
     } else if (keys.includes(this.keyMap.Enter)) this.player.setState(rolling);
+    this.player.collisions?.enemy &&
+      this.player.collisions.enemy.forEach((collision) => {
+        if (collision.name === "enemy") {
+          collision.remove();
+          this.game.score++;
+        }
+      });
   }
 }
 
