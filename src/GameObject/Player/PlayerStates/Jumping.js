@@ -4,6 +4,7 @@ import {falling} from "./Falling";
 import {sitting} from "./Sitting";
 import {rolling} from "./Rolling";
 import {diving} from "./Diving";
+import {dizzy} from "./Dizzy";
 
 export const jumping = "jumping";
 
@@ -29,6 +30,7 @@ class Jumping extends PlayerState {
     } else if (keys.includes(this.keyMap.ArrowDown)) {
       this.player.setState(diving);
     }
+    this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
   }
 }
 
