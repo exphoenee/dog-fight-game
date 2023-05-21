@@ -12,11 +12,13 @@ class Running extends PlayerState {
     super(running, player);
   }
 
-  enterActions() {}
+  enterActions() {
+    this.game.gameSpeed = 10;
+  }
 
   handleInput(keys) {
-    new Dust(this.player.game, {
-      positionX: this.player.positionX - this.player.width * 0.3,
+    new Dust(this.game, {
+      positionX: this.player.positionX,
       positionY: this.player.positionY + this.player.height * 0.4,
     });
     if (keys.includes(this.keyMap.ArrowDown)) {
