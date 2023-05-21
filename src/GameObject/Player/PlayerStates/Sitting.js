@@ -12,7 +12,7 @@ class Sitting extends PlayerState {
   }
 
   enterActions() {
-    //pass
+    this.game.gameSpeed = 0;
   }
 
   handleInput(keys) {
