@@ -96,13 +96,13 @@ class CanvasHandler {
     this.ctx.save();
     this.ctx.globalAlpha = particle.opacity;
     this.ctx.translate(particle.positionX, particle.positionY);
-    this.ctx.rotate((particle.angle * Math.PI) / 180);
+    this.ctx.rotate(particle.rotate);
     this.ctx.drawImage(
       particle.image,
-      -particle.width / 2,
-      -particle.height / 2,
-      particle.width,
-      particle.height,
+      (-particle.width / 2) * particle.size,
+      (-particle.height / 2) * particle.size,
+      particle.width * particle.size,
+      particle.height * particle.size,
     );
     this.ctx.restore();
   }
