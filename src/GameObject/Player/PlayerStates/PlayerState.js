@@ -6,8 +6,13 @@ class PlayerState {
     this.game = player.game;
     this.player = player;
     this.keyMap = player.game.keyboardHandler.keyMap;
-    this.frameNrX = playerProperty[this.name].frameNrX;
-    this.frameY = playerProperty[this.name].frameY;
+    if (!(this.name in playerProperty.stateAnim)) {
+      throw new Error(
+        `PlayerState ${this.name} not found in playerProperty stateAnim.`,
+      );
+    }
+    this.frameNrX = playerProperty.stateAnim[this.name].frameNrX;
+    this.frameY = playerProperty.stateAnim[this.name].frameY;
   }
 
   enterActions() {
