@@ -31,7 +31,7 @@ class Loading extends GameState {
     );
   }
 
-  handleInput(keys) {
+  handleInput() {
     if (this.game.gameObjects.every((obj) => !obj.isLoading)) {
       this.game.setState(waitingStart);
     }
