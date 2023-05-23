@@ -10,16 +10,12 @@ class Dizzy extends PlayerState {
   }
 
   enterActions() {
-    console.log("dizzy starts");
     this.game.gameSpeed = 0;
   }
 
   handleInput() {
-    console.log("dizzy handleInput");
-    console.log(this.player.frameX, this.player.frameNrX);
-    if (this.player.frameX === 10) {
+    if (this.player.frameX === 10)
       this.player.setState(this.player.onGround() ? sitting : falling);
-    }
   }
 }
 
