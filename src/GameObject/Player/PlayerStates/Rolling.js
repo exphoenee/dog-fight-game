@@ -5,6 +5,7 @@ import {falling} from "./Falling";
 export const rolling = "rolling";
 
 import Fire from "../../Particles/Fire";
+import Explosion from "../../Explosion/Explosion";
 
 class Rolling extends PlayerState {
   constructor(player) {
@@ -24,10 +25,14 @@ class Rolling extends PlayerState {
       positionY: this.player.positionY,
     });
     this.player.collisions?.enemy &&
-      this.player.collisions.enemy.forEach((collision) => {
-        if (collision.name === "enemy") {
-          collision.remove();
+      this.player.collisions.enemy.forEach((otherObject) => {
+        if (otherObject.name === "enemy") {
+          otherObject.remove();
           this.game.score++;
+          new Explosion(this.game, {
+            positionX: otherObject.positionX,
+            positionY: otherObject.positionY,
+          });
         }
       });
     if (!this.keys.includes(this.keyMap.Enter))
