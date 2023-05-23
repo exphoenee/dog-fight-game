@@ -18,7 +18,7 @@ class Rolling extends PlayerState {
     }
   }
 
-  handleInput(keys) {
+  handleInput() {
     new Fire(this.game, {
       positionX: this.player.positionX,
       positionY: this.player.positionY,
@@ -30,11 +30,11 @@ class Rolling extends PlayerState {
           this.game.score++;
         }
       });
-    if (!keys.includes(this.keyMap.Enter))
+    if (!this.keys.includes(this.keyMap.Enter))
       this.player.setState(this.player.onGround() ? running : falling);
     else if (
-      keys.includes(this.keyMap.Enter) &&
-      keys.includes(this.keyMap.ArrowUp) &&
+      this.keys.includes(this.keyMap.Enter) &&
+      this.keys.includes(this.keyMap.ArrowUp) &&
       this.player.onGround()
     ) {
       this.player.jumpSpeed = -this.player.jumpHeight * 0.85;
