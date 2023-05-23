@@ -8,6 +8,10 @@ class GameState {
     this.canvasHandler = game.canvasHandler;
   }
 
+  get keys() {
+    return this.game.keyboardHandler.keys;
+  }
+
   enterActions() {
     throw new Error("enterActions method not implemented");
   }
