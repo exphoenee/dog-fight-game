@@ -22,11 +22,11 @@ class Running extends PlayerState {
       positionX: this.player.positionX,
       positionY: this.player.positionY + this.player.height * 0.4,
     });
-    if (this.this.keys.includes(this.keyMap.ArrowDown)) {
+    if (this.keys.includes(this.keyMap.ArrowDown)) {
       this.player.setState(sitting);
-    } else if (this.this.keys.includes(this.keyMap.ArrowUp)) {
+    } else if (this.keys.includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
-    } else if (this.this.keys.includes(this.keyMap.Enter)) {
+    } else if (this.keys.includes(this.keyMap.Enter)) {
       this.player.setState(rolling);
     }
     this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
