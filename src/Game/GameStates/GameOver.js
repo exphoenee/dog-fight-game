@@ -24,8 +24,8 @@ class GameOver extends GameState {
     );
   }
 
-  handleInput(keys) {
-    if (keys.length > 0) {
+  handleInput() {
+    if (this.keys.length > 0) {
       this.game.setState(initialize);
     }
   }
