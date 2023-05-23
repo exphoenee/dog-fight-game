@@ -15,7 +15,7 @@ class Initialize extends GameState {
     this.game.lives = 3;
   }
 
-  handleInput(keys) {
+  handleInput() {
     this.game.setState(loading);
   }
 }
