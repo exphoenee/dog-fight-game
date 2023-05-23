@@ -30,7 +30,7 @@ class Diving extends PlayerState {
           positionY: this.player.positionY + this.player.height * 0.7,
         });
       }
-    } else if (this.this.keys.includes(this.keyMap.Enter))
+    } else if (this.keys.includes(this.keyMap.Enter))
       this.player.setState(rolling);
     this.player.collisions?.enemy &&
       this.player.collisions.enemy.forEach((collision) => {
