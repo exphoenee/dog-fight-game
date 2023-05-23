@@ -14,7 +14,7 @@ class Dizzy extends PlayerState {
     this.game.gameSpeed = 0;
   }
 
-  handleInput(keys) {
+  handleInput() {
     console.log("dizzy handleInput");
     console.log(this.player.frameX, this.player.frameNrX);
     if (this.player.frameX === 10) {
