@@ -17,10 +17,10 @@ class Falling extends PlayerState {
     }
   }
 
-  handleInput(keys) {
+  handleInput() {
     if (this.player.onGround()) {
       this.player.setState(sitting);
-    } else if (keys.includes(this.keyMap.Enter)) {
+    } else if (this.keys.includes(this.keyMap.Enter)) {
       this.player.setState(rolling);
     }
     this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
