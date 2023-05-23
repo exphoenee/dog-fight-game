@@ -89,10 +89,10 @@ class Game {
     this.currentState.render();
 
     this.gameFrame++;
+    this.deltaTime = timeStamp - this.lastTime;
     this.lastTime = timeStamp;
 
     window.requestAnimationFrame(this.update.bind(this));
-    this.deltaTime = timeStamp - this.lastTime ?? 0;
   }
 
   animate() {
