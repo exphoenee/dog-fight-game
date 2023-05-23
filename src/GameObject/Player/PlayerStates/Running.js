@@ -17,16 +17,16 @@ class Running extends PlayerState {
     this.game.gameSpeed = 10;
   }
 
-  handleInput(keys) {
+  handleInput() {
     new Dust(this.game, {
       positionX: this.player.positionX,
       positionY: this.player.positionY + this.player.height * 0.4,
     });
-    if (keys.includes(this.keyMap.ArrowDown)) {
+    if (this.this.keys.includes(this.keyMap.ArrowDown)) {
       this.player.setState(sitting);
-    } else if (keys.includes(this.keyMap.ArrowUp)) {
+    } else if (this.this.keys.includes(this.keyMap.ArrowUp)) {
       this.player.setState(jumping);
-    } else if (keys.includes(this.keyMap.Enter)) {
+    } else if (this.this.keys.includes(this.keyMap.Enter)) {
       this.player.setState(rolling);
     }
     this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
