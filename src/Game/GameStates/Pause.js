@@ -24,8 +24,8 @@ class Pause extends GameState {
     );
   }
 
-  handleInput(keys) {
-    if (keys.includes(this.keyMap[" "])) {
+  handleInput() {
+    if (this.keys.includes(this.keyMap[" "])) {
       this.game.setState(playing);
     }
   }
