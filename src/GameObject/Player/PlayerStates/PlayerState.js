@@ -11,8 +11,12 @@ class PlayerState {
         `PlayerState ${this.name} not found in playerProperty stateAnim.`,
       );
     }
-    this.frameNrX = playerProperty.stateAnim[this.name].frameNrX;
-    this.frameY = playerProperty.stateAnim[this.name].frameY;
+    this.frameNrX = this.player.stateAnim[this.name].frameNrX;
+    this.frameY = this.player.stateAnim[this.name].frameY;
+  }
+
+  get keys() {
+    return this.game.keyboardHandler.keys;
   }
 
   enterActions() {
@@ -20,7 +24,6 @@ class PlayerState {
   }
 
   enter() {
-    this.player.stateAnim = this.name;
     this.player.frameY = this.frameY;
     this.player.frameNrX = this.frameNrX;
     this.enterActions();
