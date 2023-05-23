@@ -37,8 +37,8 @@ class Playing extends GameState {
     });
   }
 
-  handleInput(keys) {
-    if (keys.includes(this.keyMap.Escape)) {
+  handleInput() {
+    if (this.keys.includes(this.keyMap.Escape)) {
       this.game.setState(pause);
     }
     if (this.game.lives <= 0) {
