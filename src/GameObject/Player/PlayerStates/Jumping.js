@@ -20,14 +20,14 @@ class Jumping extends PlayerState {
     }
   }
 
-  handleInput(keys) {
+  handleInput() {
     if (this.player.jumpSpeed > this.player.weight) {
       this.player.setState(falling);
     } else if (this.player.onGround()) {
       this.player.setState(sitting);
-    } else if (keys.includes(this.keyMap.Enter)) {
+    } else if (this.keys.includes(this.keyMap.Enter)) {
       this.player.setState(rolling, 2);
-    } else if (keys.includes(this.keyMap.ArrowDown)) {
+    } else if (this.keys.includes(this.keyMap.ArrowDown)) {
       this.player.setState(diving);
     }
     this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
