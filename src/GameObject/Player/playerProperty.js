@@ -17,6 +17,7 @@ const playerProperty = {
   spriteHeightRaw: 5230 / 10,
   jumpHeight: 30,
   weight: 1,
+  dizzyTime: 1000,
   width: 128,
   speedX: 0,
   maxSpeedX: 5,
