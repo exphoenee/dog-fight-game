@@ -6,6 +6,7 @@ export const diving = "diving";
 
 import Fire from "../../Particles/Fire";
 import Splash from "../../Particles/Splash";
+import Explosion from "../../Explosion/Explosion";
 
 class Diving extends PlayerState {
   constructor(player) {
@@ -33,10 +34,14 @@ class Diving extends PlayerState {
     } else if (this.keys.includes(this.keyMap.Enter))
       this.player.setState(rolling);
     this.player.collisions?.enemy &&
-      this.player.collisions.enemy.forEach((collision) => {
-        if (collision.name === "enemy") {
-          collision.remove();
+      this.player.collisions.enemy.forEach((otherObject) => {
+        if (otherObject.name === "enemy") {
+          otherObject.remove();
           this.game.score++;
+          new Explosion(this.game, {
+            positionX: otherObject.positionX,
+            positionY: otherObject.positionY,
+          });
         }
       });
   }
