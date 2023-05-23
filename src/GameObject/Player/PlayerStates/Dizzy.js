@@ -7,14 +7,19 @@ export const dizzy = "dizzy";
 class Dizzy extends PlayerState {
   constructor(player) {
     super(dizzy, player);
+    this.dizzyTime = 0;
   }
 
   enterActions() {
+    console.log(this.player.dizzyTime);
+    this.dizzyTime = this.player.dizzyTime;
     this.game.gameSpeed = 0;
   }
 
   handleInput() {
-    if (this.player.frameX === 10)
+    this.dizzyTime -= this.game.deltaTime;
+    console.log(this.dizzyTime);
+    if (this.dizzyTime <= 0)
       this.player.setState(this.player.onGround() ? sitting : falling);
   }
 }
