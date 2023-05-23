@@ -37,13 +37,13 @@ class Player extends GameObject {
     if (this.positionX > this.game.canvas.width - this.width / 2)
       this.positionX = this.game.canvas.width - this.width / 2;
     if (
-      this.game.keyboardHandler.this.keys.includes(
+      this.game.keyboardHandler.keys.includes(
         this.game.keyboardHandler.keyMap.ArrowLeft,
       )
     ) {
       this.speedX = -this.maxSpeedX;
     } else if (
-      this.game.keyboardHandler.this.keys.includes(
+      this.game.keyboardHandler.keys.includes(
         this.game.keyboardHandler.keyMap.ArrowRight,
       )
     ) {
