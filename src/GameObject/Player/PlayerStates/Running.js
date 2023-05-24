@@ -28,11 +28,7 @@ class Running extends PlayerState {
       this.player.setState(sitting);
     else if (this.keys.includes(this.keyMap.ArrowUp))
       this.player.setState(jumping);
-    else if (
-      this.keys.includes(this.keyMap.Enter) &&
-      this.game.energy > this.game.maxEnergy / 2 &&
-      !this.game.charging
-    )
+    else if (this.keys.includes(this.keyMap.Enter) && !this.game.charging)
       this.player.setState(rolling);
     this.player.collisions?.enemy?.length > 0 && this.player.setState(dizzy);
   }
