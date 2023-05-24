@@ -7,6 +7,7 @@ export const rolling = "rolling";
 
 import Fire from "../../Particles/Fire";
 import Explosion from "../../Explosion/Explosion";
+import FloatingMessages from "../../FloatingMessages/FloatingMessages";
 
 class Rolling extends PlayerState {
   constructor(player) {
@@ -35,6 +36,13 @@ class Rolling extends PlayerState {
           new Explosion(this.game, {
             positionX: otherObject.positionX,
             positionY: otherObject.positionY,
+          });
+          new FloatingMessages(this.game, {
+            text: "+1",
+            x: otherObject.positionX,
+            y: otherObject.positionY,
+            targetX: 90,
+            targetY: 25,
           });
         }
       });
