@@ -23,6 +23,10 @@ class Playing extends GameState {
       particle.update();
       if (this.game.lastTime >= this.game.fps) particle.draw();
     });
+    this.game.floatingMessages.forEach((message) => {
+      message.update();
+      if (this.game.lastTime >= this.game.fps) message.draw();
+    });
 
     // dashBoard
     this.canvasHandler.drawText(`Score: ${this.game.score}`, 10, 30, {
