@@ -1,13 +1,14 @@
 import PlayerState from "./PlayerState";
 import {running} from "./Running";
-import {rolling} from "./Rolling";
 import {sitting} from "./Sitting";
+import {falling} from "./Falling";
 
 export const diving = "diving";
 
 import Fire from "../../Particles/Fire";
 import Splash from "../../Particles/Splash";
 import Explosion from "../../Explosion/Explosion";
+import FloatingMessages from "../../FloatingMessages/FloatingMessages";
 
 class Diving extends PlayerState {
   constructor(player) {
@@ -34,7 +35,7 @@ class Diving extends PlayerState {
           positionY: this.player.positionY + this.player.height * 0.7,
         });
       }
-    } else if (this.game.energy < 50 && this.game.charging)
+    } else if (this.game.energy < this.game.maxEnergy / 2 && this.game.charging)
       this.player.setState(this.player.onGround() ? sitting : falling);
 
     this.player.collisions?.enemy &&
@@ -45,6 +46,13 @@ class Diving extends PlayerState {
           new Explosion(this.game, {
             positionX: otherObject.positionX,
             positionY: otherObject.positionY,
+          });
+          new FloatingMessages(this.game, {
+            text: "+1",
+            x: otherObject.positionX,
+            y: otherObject.positionY,
+            targetX: 90,
+            targetY: 25,
           });
         }
       });
