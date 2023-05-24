@@ -29,6 +29,7 @@ class Game {
     /* Game Objects */
     this.gameObjects = [];
     this.particles = [];
+    this.floatingMessages = [];
 
     this.layerType = Object.keys(layerConfig)[0];
     this.nrOfLayers = layerConfig[this.layerType].properties.length;
