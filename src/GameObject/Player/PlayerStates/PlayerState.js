@@ -1,5 +1,7 @@
 import playerProperty from "../playerProperty";
 
+import {sitting} from "./Sitting";
+
 class PlayerState {
   constructor(state, player) {
     this.name = state;
@@ -17,6 +19,19 @@ class PlayerState {
 
   get keys() {
     return this.game.keyboardHandler.keys;
+  }
+
+  handleEnergy(val) {
+    this.game.energy += val;
+    this.game.energy >= this.game.maxEnergy &&
+      (this.game.energy = this.game.maxEnergy);
+    if (this.game.energy <= 0) {
+      this.game.charging = true;
+      this.game.energy = 0;
+    }
+    if (this.game.energy >= 50) {
+      this.game.charging = false;
+    }
   }
 
   enterActions() {
