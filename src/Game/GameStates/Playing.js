@@ -26,15 +26,47 @@ class Playing extends GameState {
 
     // dashBoard
     this.canvasHandler.drawText(`Score: ${this.game.score}`, 10, 30, {
-      color: "red",
+      color: "black",
+      fontSize: 30,
+      align: "left",
+      shadowOffsetX: 2,
+      shadowOffsetY: 2,
+      shadowColor: "white",
+    });
+    this.canvasHandler.drawText(`Lives: ${this.game.lives}`, 10, 55, {
+      color: "black",
       fontSize: 20,
       align: "left",
+      shadowOffsetX: 2,
+      shadowOffsetY: 2,
+      shadowColor: "white",
     });
-    this.canvasHandler.drawText(`Lives: ${this.game.lives}`, 10, 60, {
-      color: "red",
-      fontSize: 20,
-      align: "left",
-    });
+    this.canvasHandler.drawText(
+      `Time: ${(this.game.lastTime / 1000).toFixed(1)}`,
+      10,
+      80,
+      {
+        color: "black",
+        fontSize: 20,
+        align: "left",
+        shadowOffsetX: 2,
+        shadowOffsetY: 2,
+        shadowColor: "white",
+      },
+    );
+    this.canvasHandler.drawText(
+      `Charge: ${this.game.energy.toFixed(1)}`,
+      10,
+      105,
+      {
+        color: this.game.charging ? "red" : "black",
+        fontSize: 20,
+        align: "left",
+        shadowOffsetX: 2,
+        shadowOffsetY: 2,
+        shadowColor: "white",
+      },
+    );
   }
 
   handleInput() {
