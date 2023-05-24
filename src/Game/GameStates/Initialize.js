@@ -13,6 +13,10 @@ class Initialize extends GameState {
     this.game.particles = [];
     this.game.score = 0;
     this.game.lives = 3;
+    this.maxEnergy = 100;
+    this.energy = this.maxEnergy;
+    this.game.lastTime = 0;
+    this.charging = false;
   }
 
   handleInput() {
