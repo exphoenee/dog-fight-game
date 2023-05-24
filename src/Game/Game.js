@@ -35,6 +35,9 @@ class Game {
 
     this.score = 0;
     this.lives = 3;
+    this.charging = false;
+    this.maxEnergy = 100;
+    this.energy = this.maxEnergy;
 
     this.createLayers(this.layerType);
     this.addPlayer();
