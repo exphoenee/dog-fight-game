@@ -108,7 +108,18 @@ class CanvasHandler {
   }
 
   drawText(text, x, y, options) {
-    const {font, fontSize, color, weight, align, baseline, opacity} = {
+    const {
+      font,
+      fontSize,
+      color,
+      weight,
+      align,
+      baseline,
+      opacity,
+      shadowOffsetX,
+      shadowOffsetY,
+      shadowColor,
+    } = {
       ...{
         font: "serif",
         fontSize: 20,
@@ -130,6 +141,9 @@ class CanvasHandler {
       this.ctx.fillStyle = color;
       this.ctx.textAlign = align;
       this.ctx.textBaseline = baseline;
+      this.ctx.shadowOffsetX = shadowOffsetX;
+      this.ctx.shadowOffsetY = shadowOffsetY;
+      this.ctx.shadowColor = shadowColor;
       this.ctx.fillText(text, x, y);
     });
   }
