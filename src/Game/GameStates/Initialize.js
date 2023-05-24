@@ -11,6 +11,7 @@ class Initialize extends GameState {
   enterActions() {
     this.game.gameObjects = [];
     this.game.particles = [];
+    this.floatingMessages = [];
     this.game.score = 0;
     this.game.lives = 3;
     this.maxEnergy = 100;
