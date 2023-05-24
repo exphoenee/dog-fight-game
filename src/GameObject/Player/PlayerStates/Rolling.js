@@ -1,6 +1,7 @@
 import PlayerState from "./PlayerState";
 import {running} from "./Running";
 import {falling} from "./Falling";
+import {sitting} from "./Sitting";
 
 export const rolling = "rolling";
 
@@ -20,6 +21,8 @@ class Rolling extends PlayerState {
   }
 
   handleInput() {
+    this.handleEnergy(-1);
+
     new Fire(this.game, {
       positionX: this.player.positionX,
       positionY: this.player.positionY,
@@ -43,7 +46,8 @@ class Rolling extends PlayerState {
       this.player.onGround()
     ) {
       this.player.jumpSpeed = -this.player.jumpHeight * 0.85;
-    }
+    } else if (this.game.energy < this.game.maxEnergy && this.game.charging)
+      this.player.setState(this.player.onGround() ? sitting : falling);
   }
 }
 
