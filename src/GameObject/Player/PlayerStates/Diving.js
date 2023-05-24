@@ -1,6 +1,7 @@
 import PlayerState from "./PlayerState";
 import {running} from "./Running";
 import {rolling} from "./Rolling";
+import {sitting} from "./Sitting";
 
 export const diving = "diving";
 
@@ -19,6 +20,8 @@ class Diving extends PlayerState {
   }
 
   handleInput() {
+    this.handleEnergy(-3);
+
     new Fire(this.game, {
       positionX: this.player.positionX,
       positionY: this.player.positionY,
@@ -31,8 +34,9 @@ class Diving extends PlayerState {
           positionY: this.player.positionY + this.player.height * 0.7,
         });
       }
-    } else if (this.keys.includes(this.keyMap.Enter))
-      this.player.setState(rolling);
+    } else if (this.game.energy < 50 && this.game.charging)
+      this.player.setState(this.player.onGround() ? sitting : falling);
+
     this.player.collisions?.enemy &&
       this.player.collisions.enemy.forEach((otherObject) => {
         if (otherObject.name === "enemy") {
